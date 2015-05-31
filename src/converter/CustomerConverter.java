@@ -16,7 +16,7 @@ import model.Customer;
 public class CustomerConverter implements Converter{
 	
 	private CustomerFacade customerFacade;
-
+ 
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String arg2)
 			throws ConverterException {
