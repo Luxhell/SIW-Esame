@@ -13,6 +13,8 @@ import facade.AddressFacade;
 @ManagedBean(name = "addressController")
 public class AddressController {
 	
+	//Aggiunto commento
+	
 	private String via;
 	private String citta;
 	private String stato;
