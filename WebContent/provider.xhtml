@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Fornitore</title>
+</h:head>
+<h:body>
+
+	<div>Partita IVA: ${providerController.provider.partitaIVA}</div>
+	<div>Email: ${providerController.provider.email}</div>
+	<div>Telefono: ${providerController.provider.telefono}</div>
+	<div>Indirizzo</div>
+	<div>Id dell'indrizzo: ${providerController.provider.indirizzo}</div>
+	<div>Via: ${providerController.provider.indirizzo.via}</div>
+	<div>Città : ${providerController.provider.indirizzo.citta}</div>
+	<div>Stato: ${providerController.provider.indirizzo.stato}</div>
+	<div>CAP: ${providerController.provider.indirizzo.cap}</div>
+	<div>Regione: ${providerController.provider.indirizzo.regione}</div>
+	<div>
+	Prodotti del fornitore:
+		<c:forEach var="prodotto"
+			items="#{providerController.provider.prodotti}">
+			<h:outputText value="#{product.nome} #{product.codice}" />
+		</c:forEach>
+	</div>
+
+</h:body>
+</html>

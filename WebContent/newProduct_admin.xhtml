@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+<title>Prodotto</title>
+</h:head>
+<h:body>
+<h1>Prodotto</h1>
+		<h:form>
+			<div>
+				Nome:
+				<h:inputText value="#{productController.nome}" required="true"
+					requiredMessage="Il nome e' obbligatoria" id="nome" />
+				<h:message for="nome" />
+			</div>
+			<div>
+				Codice:
+				<h:inputText value="#{productController.codice}" required="true"
+					requiredMessage="Il codice e' obbligatoria" id="codice" />
+				<h:message for="codice" />
+			</div>
+			<div>
+				Descrizione:
+				<h:inputText value="#{productController.descrizione}" required="true"
+					requiredMessage="Il descrizione e' obbligatorio" id="descrizione" />
+				<h:message for="descrizione" />
+			</div>
+			<div>
+				Prezzo:
+				<h:inputText value="#{productController.prezzo}" required="true"
+					requiredMessage="Il prezzo e' obbligatorio" id="prezzo" />
+				<h:message for="prezzo" />
+			</div>	
+			<div>
+				Quantità:
+				<h:inputText value="#{productController.quantita}" required="true"
+					requiredMessage="La quantità e' obbligatorio" id="quantita" >
+					<f:convertNumber integerOnly="true" />
+					</h:inputText>
+					
+				<h:message for="quantita" />
+			</div>	
+					
+		<div>Fornitore
+			<h:selectOneMenu value="#{productController.fornitore}">
+				<f:selectItems value="#{providerController.getAll()}"
+					var="fornitore" itemLabel="#{fornitore.partitaIVA} #{fornitore.email}" itemValue="#{fornitore}" />
+			</h:selectOneMenu>
+		</div>
+
+			<div>
+				<h:commandButton value="Crea un nuovo prodotto"
+					action="#{productController.createProductAdmin}" />
+			</div>
+		</h:form>
+
+</h:body>
+</html>

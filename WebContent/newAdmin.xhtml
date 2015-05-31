@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Cliente</title>
+</h:head>
+<h:body>
+	<h1>Cliente</h1>
+	<h:form>
+		<div>
+			Nome:
+			<h:inputText value="#{customerController.nome}" required="true"
+				requiredMessage="Il Nome e' obbligatoria" id="nome" />
+			<h:message for="nome" />
+		</div>
+		<div>
+			Cognome:
+			<h:inputText value="#{customerController.cognome}" required="true"
+				requiredMessage="Il Cognome e' obbligatoria" id="cognome" />
+			<h:message for="cognome" />
+		</div>
+		<div>
+			Email:
+			<h:inputText value="#{customerController.email}" required="true"
+				requiredMessage="L'email e' obbligatoria" id="email" >
+				<f:validator validatorId="validator.NewCustomerValidator" />
+				</h:inputText>
+			<h:message for="email" />
+		</div>
+		<div>
+			Password:
+			<h:inputSecret value="#{customerController.password}" required="true"
+				requiredMessage="La Password e' obbligatoria" id="password" />
+			<h:message for="password" />
+		</div>
+		<div>
+			Data di Nascita:
+			<h:inputText value="#{customerController.dataNascita}" required="true"
+				requiredMessage="La Data di Nascita e' obbligatoria" 
+				converterMessage="La data deve essere nel formato gg/mm/aaaa"
+				id="dateN" />
+			<h:message for="dateN" />
+		</div>
+		<div>
+			Via:
+			<h:inputText value="#{customerController.via}" required="true"
+			 requiredMessage="La via e' obbligatoria" 
+			id="street" /> 
+			<h:message for="street" />
+		</div>
+		<div>
+			Città:
+			<h:inputText value="#{customerController.citta}" required="true"
+				requiredMessage="La citta' e' obbligatoria" id="city" />
+			<h:message for="city" />
+		</div>
+		<div>
+			Stato:
+			<h:inputText value="#{customerController.stato}" required="true"
+				requiredMessage="Lo stato e' obbligatoria" id="state" />
+			<h:message for="state" />
+		</div>
+		<div>
+			CAP:
+			<h:inputText value="#{customerController.cap}" required="true"
+				requiredMessage="Il CAP e' obbligatoria" id="zipcode" />
+			<h:message for="zipcode" />
+		</div>
+		<div>
+			Regione:
+			<h:inputText value="#{customerController.regione}" required="true"
+				requiredMessage="La regione e' obbligatoria" id="country" />
+			<h:message for="country" />
+		</div>
+
+		<div>
+			<h:commandButton value="Crea nuovo Amministratore"
+				action="#{customerController.createAdmin}" />
+		</div>
+
+	</h:form>
+
+</h:body>
+</html>

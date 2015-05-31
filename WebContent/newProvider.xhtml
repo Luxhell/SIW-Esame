@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+<title>Fornitore</title>
+</h:head>
+<h:body>
+<h1>Fornitore</h1>
+		<h:form>
+			<div>
+				Email:
+				<h:inputText value="#{providerController.email}" required="true"
+					requiredMessage="L'email e' obbligatoria" id="email" />
+				<h:message for="email" />
+			</div>
+			<div>
+				Partita IVA:
+				<h:inputText value="#{providerController.partitaIVA}" required="true"
+					requiredMessage="La partita Iva e' obbligatoria" id="partitaIVA" />
+				<h:message for="partitaIVA" />
+			</div>
+			<div>
+				Telefono:
+				<h:inputText value="#{providerController.telefono}" required="true"
+					requiredMessage="Il telefono e' obbligatorio" id="telefono" />
+				<h:message for="telefono" />
+			</div>
+			
+			<div>
+				Via:
+				<h:inputText value="#{providerController.via}" required="true"
+					requiredMessage="La via e' obbligatoria" id="street" />
+				<h:message for="street" />
+			</div>
+			<div>
+				Città:
+				<h:inputText value="#{providerController.citta}" required="true"
+					requiredMessage="La citta' e' obbligatoria" id="city" />
+				<h:message for="city" />
+			</div>
+			<div>
+				Stato:
+				<h:inputText value="#{providerController.stato}" required="true"
+					requiredMessage="Lo stato e' obbligatoria" id="state" />
+				<h:message for="state" />
+			</div>
+			<div>
+				CAP:
+				<h:inputText value="#{providerController.cap}" required="true"
+					requiredMessage="Il CAP e' obbligatoria" id="zipcode" />
+				<h:message for="zipcode" />
+			</div>
+			<div>
+				Regione:
+				<h:inputText value="#{providerController.regione}" required="true"
+					requiredMessage="La regione e' obbligatoria" id="country" />
+				<h:message for="country" />
+			</div>
+
+			<div>
+				<h:commandButton value="Crea un nuovo Fornitore"
+					action="#{providerController.createProvider}" />
+			</div>
+
+
+		</h:form>
+
+</h:body>
+</html>

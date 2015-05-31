@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>PRODOTTI POST LOGIN</title>
+</h:head>
+<h:body>
+
+	<h:form>
+		<table>
+			<tr>
+				<th>Nome</th>
+				<th>Prezzo</th>
+			</tr>
+			<c:forEach var="prodotto" items="#{productController.getAll()}">
+				<tr>
+					<td><h:commandLink
+							action="#{productController.dettagli(prodotto)}"
+							value="#{prodotto.nome}"></h:commandLink></td>
+					<td>${prodotto.prezzo}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</h:form>
+
+	<h:form>
+		<h:commandButton value="Logout" action="#{customerManager.logout}" />
+	</h:form>
+
+</h:body>
+</html>

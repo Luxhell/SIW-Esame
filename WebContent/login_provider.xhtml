@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>LOGIN PROVIDER</title>
+</h:head>
+
+
+<h:body>
+	<h1>Login Provider</h1>
+	<h:form>
+		<div>
+			PartitaIVA:
+			<h:inputText value="#{providerController.partitaIVA}" required="true"
+				requiredMessage="La partita IVA è obbligatoria" id="partitaIVA" />
+			<h:message for="partitaIVA" />
+		</div>
+		<div>
+			Email:
+			<h:inputText value="#{providerController.email}" required="true"
+				requiredMessage="L'email e' obbligatoria" id="email" >
+				<f:validator validatorId="validator.EmailValidator" />
+				</h:inputText>
+			<h:message for="email" />
+		</div>
+
+		<div>
+			<h:commandButton value="Login" action="#{providerController.login}" />
+		</div>
+	</h:form>
+</h:body>
+</html>

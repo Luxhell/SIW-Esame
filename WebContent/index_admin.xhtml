@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Elenco Operazioni Disponibile (POST LOGIN-ADMIN)</title>
+</h:head>
+<h:body>
+	<div>
+		<h:outputLink value="newProvider.xhtml">Inserisci un nuovo Fornitore</h:outputLink>
+	</div>
+	<div>
+		<h:outputLink value="newCustomer.xhtml">Inserisci un nuovo Cliente</h:outputLink>
+	</div>
+	<div>
+		<h:outputLink value="newProduct_admin.xhtml">Inserisci un nuovo Prodotto</h:outputLink>
+	</div>
+	<div>
+		<h:outputLink value="products_admin.xhtml">Lista di tutti i prodotti</h:outputLink>
+	</div>
+	<div>
+		<h:form>
+			<h:commandButton value="Logout" action="#{customerManager.logout}" />
+		</h:form>
+	</div>
+	
+	
+	<table>
+		<h:form>
+			<tr>
+				<th>Email del fornitore</th>
+			</tr>
+			<c:forEach var="fornitore" items="#{providerController.getAll()}">
+				<tr>
+					<td><h:commandLink
+							action="#{providerController.dettagli(fornitore)}"
+							value="#{fornitore.email}">
+						</h:commandLink></td>
+
+				</tr>
+			</c:forEach>
+
+		</h:form>
+	</table>
+
+
+	<div>SONO UN SUPERUSER E MI SENTO FICHISSIMO PER QUESTO!!!!!!!!</div>
+	<div>(tanto non posso creare altri SuperUser e quindi mi sentirò
+		triste e disperato tutta la vita) ...</div>
+
+</h:body>
+</html>

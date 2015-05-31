@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>INDEX PROVIDER</title>
+</h:head>
+<h:body>
+	<div>
+	<h:outputLink value="allMyProducts.xhtml">Lista di tutti i miei prodotti</h:outputLink>
+	</div>
+	<div>
+	
+	<h:outputLink value="newProduct_provider.xhtml">Aggiungi un nuovo prodotto</h:outputLink>
+	</div>
+	
+	<h:form>
+		<h:commandButton value="Logout" action="#{providerManager.logout}" />
+	</h:form>
+
+	
+</h:body>
+</html>

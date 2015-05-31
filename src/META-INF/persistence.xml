@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	
+	<persistence-unit name="siw-esame-jsf" transaction-type="JTA" >
+	    <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
+	    <jta-data-source>SiwEsame Database</jta-data-source>
+			<class>model.Address</class>
+			<class>model.Customer</class>
+			<class>model.Order</class>
+			<class>model.OrderLine</class>
+			<class>model.Product</class>
+			<class>model.Provider</class>
+	    <properties>
+	        <property name="openjpa.jdbc.SyncronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+	    </properties>
+	</persistence-unit>
+
+</persistence>
