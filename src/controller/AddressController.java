@@ -13,8 +13,6 @@ import facade.AddressFacade;
 @ManagedBean(name = "addressController")
 public class AddressController {
 	
-	//AGGIUNTA UNA RIGA. CANCELLAMI QUANDO MI TROVI
-	
 	private String via;
 	private String citta;
 	private String stato;
