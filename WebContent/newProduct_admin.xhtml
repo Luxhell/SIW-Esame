@@ -44,7 +44,7 @@
 			</div>	
 					
 		<div>Fornitore
-			<h:selectOneMenu value="#{productController.fornitore}">
+			<h:selectOneMenu value="#{productController.fornitore}" >
 				<f:selectItems value="#{providerController.getAll()}"
 					var="fornitore" itemLabel="#{fornitore.partitaIVA} #{fornitore.email}" itemValue="#{fornitore}" />
 			</h:selectOneMenu>
@@ -54,6 +54,10 @@
 				<h:commandButton value="Crea un nuovo prodotto"
 					action="#{productController.createProductAdmin}" />
 			</div>
+			
+			<div>
+			<h:commandButton value="Logout" action="#{customerManager.logout}" />
+		</div>
 		</h:form>
 
 </h:body>

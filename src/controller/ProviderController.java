@@ -69,7 +69,7 @@ public class ProviderController {
 	
 	public String dettagli(Product product){
 		this.prodotto = product;
-		return "prodotto";
+		return "product";
 	}
 	
 	public List<Provider> getAll(){
@@ -138,8 +138,6 @@ public class ProviderController {
 		this.indirizzo = indirizzo;
 	}
 
-
-
 	public String getVia() {
 		return via;
 	}
@@ -192,5 +190,4 @@ public class ProviderController {
 		this.provider = provider;
 		return "provider";
 	}
-	
 }

@@ -40,6 +40,9 @@ public class ProductController {
 	
 	public String createProductAdmin(){
 		if(this.session2.isLogged()){
+			//DEBUG BY LOLLO ARIEMMA
+			if(this.fornitore == null)
+				return "errore";
 			this.prodotto = prodottoFacade.createProduct(nome, codice, descrizione, prezzo, quantita, fornitore);
 			return "product"; //pagina: product.xhtml
 		}else{
