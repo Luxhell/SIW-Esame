@@ -34,7 +34,6 @@ public class AddressController {
 //		return "address"; //pagina: address.xhtml
 //	}
 	
-	//up
 	public List<Address> getAll(){
 		List<Address> temp = this.addressFacade.getAllAddress();
 		return(temp!=null ? temp : new LinkedList<Address>());
