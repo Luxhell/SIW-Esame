@@ -14,6 +14,8 @@ public class ProviderManager {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.invalidateSession();
 		return "logout"; // index.xhtml
+		
+		//commento
 	}
 
 	public void login(Provider p) {
