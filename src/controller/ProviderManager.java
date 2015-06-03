@@ -15,7 +15,6 @@ public class ProviderManager {
 				.invalidateSession();
 		return "logout"; // index.xhtml
 		
-		//commento
 	}
 
 	public void login(Provider p) {

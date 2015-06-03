@@ -67,10 +67,10 @@ public class ProviderController {
     	}	
     }
 	
-	public String dettagli(Product product){
-		this.prodotto = product;
-		return "product";
-	}
+//	public String dettagli(Product product){
+//		this.prodotto = product;
+//		return "product";
+//	}
 	
 	public List<Provider> getAll(){
 		return providerFacade.getAll();

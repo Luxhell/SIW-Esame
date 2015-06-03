@@ -14,7 +14,7 @@
 	</tr>
 	<c:forEach var="prodotto" items="#{providerController.getAllMyProducts()}">
 		<tr><td>
-		<h:commandLink action="#{providerController.dettagli(prodotto)}" value="#{prodotto.nome}">
+		<h:commandLink action="#{productController.dettagli(prodotto)}" value="#{prodotto.nome}">
 		
 		</h:commandLink></td>
 		</tr>
