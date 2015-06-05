@@ -1,13 +1,9 @@
 package controller;
 
-
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import model.Address;
 import model.Product;
 import model.Provider;
@@ -78,14 +74,10 @@ public class ProviderController {
 	public List<Provider> getAll(){
 		return providerFacade.getAll();
 	}
-	
-	
 
 	public ProviderManager getSession() {
 		return session;
 	}
-
-
 
 	public void setSession(ProviderManager session) {
 		this.session = session;

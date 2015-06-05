@@ -93,9 +93,12 @@ public class ProviderFacade {
 		TypedQuery<Provider> query = this.em.createNamedQuery(
 				"Provider.findProviderByPartitaIVA", Provider.class);
 		query.setParameter("partitaIVA", iva);
-		if(query.getSingleResult().getProdotti() == null)
-			return (new ArrayList<Product>());
-		return query.getSingleResult().getProdotti();
+		
+		try {
+			return query.getSingleResult().getProdotti();
+		} catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	public Provider getProvider(String partitaIVA, String email) {
