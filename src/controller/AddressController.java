@@ -13,8 +13,6 @@ import facade.AddressFacade;
 @ManagedBean(name = "addressController")
 public class AddressController {
 	
-	//Aggiunto commento
-	
 	private String via;
 	private String citta;
 	private String stato;
@@ -30,11 +28,6 @@ public class AddressController {
 	public AddressController(){
 		
 	}
-	
-//	public String createAddress(){
-//		this.address = addressFacade.createAddress(street, city, state, zipcode, country);
-//		return "address"; //pagina: address.xhtml
-//	}
 	
 	public List<Address> getAll(){
 		List<Address> temp = this.addressFacade.getAllAddress();
