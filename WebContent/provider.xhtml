@@ -25,6 +25,17 @@
 			<h:outputText value="#{product.nome} #{product.codice}" />
 		</c:forEach>
 	</div>
+	
+				<c:forEach var="prodotto" items="#{providerController.getAllMyProducts()}">
+		<tr><td>
+		<h:form>
+		<h:commandLink action="#{productController.dettagli(prodotto)}" value="#{prodotto.nome}">
+		
+		</h:commandLink>
+		</h:form>
+		</td>
+		</tr>
+	</c:forEach>
 
 </h:body>
 </html>

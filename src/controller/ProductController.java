@@ -40,9 +40,9 @@ public class ProductController {
 	
 	public String createProductAdmin(){
 		if(this.session2.isLogged()){
-			//DEBUG BY LOLLO ARIEMMA
-			if(this.fornitore == null)
-				return "errore";
+			//DEBUG
+			if(fornitore == null)
+				return "Non ho assegnato il fornitore dal menù a tendina";
 			this.prodotto = prodottoFacade.createProduct(nome, codice, descrizione, prezzo, quantita, fornitore);
 			return "product"; //pagina: product.xhtml
 		}else{
@@ -58,6 +58,7 @@ public class ProductController {
 			return "login_provider"; //pagina: login_provider.xhtml
 		}
 	}
+	
 	
 	public String getNome() {
 		return nome;

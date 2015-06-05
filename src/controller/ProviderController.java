@@ -1,6 +1,7 @@
 package controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -54,7 +55,8 @@ public class ProviderController {
 	
     public List<Product> getAllMyProducts(){
     	String iva = this.session.getCurrent().getPartitaIVA();
-    	return this.providerFacade.getAllMyProducts(iva);
+    	 List<Product> prodottiDelFornitore = this.providerFacade.getAllMyProducts(iva);
+    	 return prodottiDelFornitore;
     }	
 	
 	public String login(){

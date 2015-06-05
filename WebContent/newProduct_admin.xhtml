@@ -45,8 +45,9 @@
 					
 		<div>Fornitore
 			<h:selectOneMenu value="#{productController.fornitore}" >
-				<f:selectItems value="#{providerController.getAll()}"
-					var="fornitore" itemLabel="#{fornitore.partitaIVA} #{fornitore.email}" itemValue="#{fornitore}" />
+			<f:selectItem itemLabel="Seleziona un fornitore" selected="true" />
+			<f:selectItems value="#{providerController.getAll()}"
+					var="fornitore" itemLabel="#{fornitore.partitaIVA}" itemValue="#{fornitore}" />
 			</h:selectOneMenu>
 		</div>
 
