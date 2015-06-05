@@ -97,7 +97,7 @@ public class ProviderFacade {
 		try {
 			return query.getSingleResult().getProdotti();
 		} catch (NoResultException e) {
-			return null;
+			return new ArrayList<Product>();
 		}
 	}
 

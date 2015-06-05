@@ -21,16 +21,14 @@
 	<div>
 		Prodotti del fornitore:
 
-		<c:forEach var="product"
-			items="#{providerController.getAllMyProducts()}">
-			<tr>
-				<td><h:form>
-						<h:commandLink action="#{productController.dettagli(product)}"
+		<c:forEach var="prodotto"
+			items="#{providerController.getAllProducts()}">
+			<h:form>
+						<h:commandLink action="#{productController.dettagli(prodotto)}"
 							value="#{product.nome}">
 
 						</h:commandLink>
-					</h:form></td>
-			</tr>
+					</h:form>
 		</c:forEach>
 	</div>
 </h:body>

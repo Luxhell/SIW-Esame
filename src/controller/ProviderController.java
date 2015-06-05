@@ -1,9 +1,12 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import model.Address;
 import model.Product;
 import model.Provider;
@@ -49,12 +52,19 @@ public class ProviderController {
 		return "provider"; //pagina: provider.xhtml
 	}
 	
-	//errore qui
+	//ERROREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
     public List<Product> getAllMyProducts(){
-    	String iva = this.session.getCurrent().getPartitaIVA();
-    	 List<Product> prodottiDelFornitore = this.providerFacade.getAllMyProducts(iva);
-    	 return prodottiDelFornitore;
+    	return this.session.getCurrent().getProdotti();
+    }
+    
+    public List<Product> getAllProducts(){
+    	return this.provider.getProdotti();
     }	
+    
+	public String dettagli(Provider provider){
+		this.provider = provider;
+		return "provider";
+	}
 	
 	public String login(){
     	Provider p = this.providerFacade.getProvider(partitaIVA, email);
@@ -181,8 +191,5 @@ public class ProviderController {
 		this.prodotto = prodotto;
 	}
 
-	public String dettagli(Provider provider){
-		this.provider = provider;
-		return "provider";
-	}
+
 }
