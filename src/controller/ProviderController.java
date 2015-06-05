@@ -53,6 +53,7 @@ public class ProviderController {
 		return "provider"; //pagina: provider.xhtml
 	}
 	
+	//errore qui
     public List<Product> getAllMyProducts(){
     	String iva = this.session.getCurrent().getPartitaIVA();
     	 List<Product> prodottiDelFornitore = this.providerFacade.getAllMyProducts(iva);
