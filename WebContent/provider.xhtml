@@ -19,23 +19,19 @@
 	<div>CAP: ${providerController.provider.indirizzo.cap}</div>
 	<div>Regione: ${providerController.provider.indirizzo.regione}</div>
 	<div>
-	Prodotti del fornitore:
-		<c:forEach var="prodotto"
-			items="#{providerController.provider.prodotti}">
-			<h:outputText value="#{product.nome} #{product.codice}" />
+		Prodotti del fornitore:
+
+		<c:forEach var="product"
+			items="#{providerController.getAllMyProducts()}">
+			<tr>
+				<td><h:form>
+						<h:commandLink action="#{productController.dettagli(product)}"
+							value="#{product.nome}">
+
+						</h:commandLink>
+					</h:form></td>
+			</tr>
 		</c:forEach>
 	</div>
-	
-				<c:forEach var="prodotto" items="#{providerController.getAllMyProducts()}">
-		<tr><td>
-		<h:form>
-		<h:commandLink action="#{productController.dettagli(prodotto)}" value="#{prodotto.nome}">
-		
-		</h:commandLink>
-		</h:form>
-		</td>
-		</tr>
-	</c:forEach>
-
 </h:body>
 </html>
