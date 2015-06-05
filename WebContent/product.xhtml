@@ -13,7 +13,14 @@
 	<div>Descrizione: ${productController.prodotto.descrizione}</div>
 	<div>Prezzo: ${productController.prodotto.prezzo}</div>
 	<div>Quantità: ${productController.prodotto.quantita}</div>
-	
+
+	<div>
+		Fornitori di questo prodotto:
+		<c:forEach var="fornitore"
+			items="#{productController.prodotto.fornitori}">
+			<h:outputText value="#{fornitore.email} #{fornitore.partitaIVA}" />
+		</c:forEach>
+	</div>
 
 </h:body>
 </html>

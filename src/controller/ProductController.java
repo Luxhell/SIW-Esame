@@ -127,9 +127,7 @@ public class ProductController {
 	public void setProdottoFacade(ProductFacade prodottoFacade) {
 		this.prodottoFacade = prodottoFacade;
 	}
-	
-	
-	
+		
 	public Provider getFornitore() {
 		return this.fornitore;
 	}
@@ -137,8 +135,7 @@ public class ProductController {
 	public List<Product> getAll(){
 		return this.prodottoFacade.getAll();
 	}
-	
-	
+		
 	public String dettagli(Product prodotto){
 		this.prodotto = prodotto;
 		return "product"; //product.xhtml
