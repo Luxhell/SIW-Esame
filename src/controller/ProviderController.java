@@ -1,12 +1,9 @@
 package controller;
 
-
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import model.Address;
 import model.Product;
 import model.Provider;
@@ -56,6 +53,7 @@ public class ProviderController {
     	return this.session.getCurrent().getProdotti();
     }
     
+	//SECONDO ME IL PROVIDER NON VIENE SALVATO QUI
     public List<Product> getAllProducts(){
     		return this.provider.getProdotti();
     }	

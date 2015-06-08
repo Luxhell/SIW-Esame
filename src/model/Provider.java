@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "Provider.findProvider", query = "SELECT p FROM Provider p WHERE p.prodotti.id = :id "),
+	@NamedQuery(name = "Provider.findProvider", query = "SELECT p FROM Provider p WHERE p.id = :id "),
 	@NamedQuery(name = "Provider.findProvider2login", query = "SELECT p FROM Provider p WHERE p.partitaIVA = :partitaIVA AND p.email = :email"),
 	@NamedQuery(name = "Provider.findAllProvider", query = "SELECT p FROM Provider p"),
 	

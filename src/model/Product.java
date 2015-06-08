@@ -97,7 +97,7 @@ public class Product {
 	}
 	
 	public List<Provider> getFornitori() {
-		return fornitori;
+		return this.fornitori;
 	}
 
 	public void setFornitori(List<Provider> fornitori) {
