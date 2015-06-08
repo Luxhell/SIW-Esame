@@ -9,7 +9,7 @@ import model.Provider;
 @SessionScoped
 public class ProviderManager {
 	private Provider current;
-
+	
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.invalidateSession();

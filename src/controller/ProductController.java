@@ -1,9 +1,12 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import model.Product;
 import model.Provider;
 import facade.ProductFacade;
@@ -58,7 +61,7 @@ public class ProductController {
 	}
 	
 	public List<Product> getAll(){
-		return this.prodottoFacade.getAll();
+			return this.prodottoFacade.getAll();
 	}
 		
 	public String dettagli(Product prodotto){

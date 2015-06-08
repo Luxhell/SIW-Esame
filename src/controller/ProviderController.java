@@ -2,9 +2,11 @@ package controller;
 
 
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import model.Address;
 import model.Product;
 import model.Provider;
@@ -55,7 +57,7 @@ public class ProviderController {
     }
     
     public List<Product> getAllProducts(){
-    	return this.provider.getProdotti();
+    		return this.provider.getProdotti();
     }	
     
 	public String dettagli(Provider provider){
@@ -76,6 +78,10 @@ public class ProviderController {
 	public List<Provider> getAll(){
 		return providerFacade.getAll();
 	}
+	
+	
+	
+	
 	
 	
 	
