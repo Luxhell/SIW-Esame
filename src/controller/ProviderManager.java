@@ -21,12 +21,19 @@ public class ProviderManager {
 		this.current = p;
 	}
 
-	public Provider getCurrent() {
-		return current;
-	}
-	
 	public boolean isLogged(){
 		return (this.current != null);
 	}
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
+	
+	public Provider getCurrent() {
+		return this.current;
+	}	
+	
+	//FINE METODI GET E SET
 
 }

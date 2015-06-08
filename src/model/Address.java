@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-
 @Entity
 @NamedQueries({
     @NamedQuery(name="Address.findAddress", query="SELECT a FROM Address a WHERE a.id = :id"),
@@ -38,6 +37,13 @@ public class Address {
 	public Address(){
 		
 	}
+	
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
 
 	public Long getId() {
 		return id;
@@ -86,6 +92,8 @@ public class Address {
 	public void setRegione(String regione) {
 		this.regione = regione;
 	}
+	
+	//FINE METODI GET E SET
 
 	@Override
 	public int hashCode() {

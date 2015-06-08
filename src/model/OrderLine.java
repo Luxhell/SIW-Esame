@@ -42,9 +42,18 @@ public class OrderLine {
 	public OrderLine(){
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
 
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -52,7 +61,7 @@ public class OrderLine {
 	}
 
 	public Float getPrezzoUnitario() {
-		return prezzoUnitario;
+		return this.prezzoUnitario;
 	}
 
 	public void setPrezzoUnitario(Float unitPrice) {
@@ -60,7 +69,7 @@ public class OrderLine {
 	}
 
 	public Integer getQuantita() {
-		return quantita;
+		return this.quantita;
 	}
 
 	public void setQuantita(Integer quantity) {
@@ -68,7 +77,7 @@ public class OrderLine {
 	}
 
 	public Order getOrder() {
-		return ordine;
+		return this.ordine;
 	}
 
 	public void setOrder(Order order) {
@@ -76,12 +85,14 @@ public class OrderLine {
 	}
 
 	public Product getProduct() {
-		return prodotto;
+		return this.prodotto;
 	}
 
 	public void setProduct(Product product) {
 		this.prodotto = product;
 	}
+	
+	//FINE METODI GET E SET
 
 	@Override
 	public int hashCode() {

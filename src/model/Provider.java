@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,8 +58,17 @@ public class Provider {
 		this.prodotti.add(prodotto);
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
+	
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 	
 	public void setId(Long id) {
@@ -68,7 +76,7 @@ public class Provider {
 	}
 
 	public String getPartitaIVA() {
-		return partitaIVA;
+		return this.partitaIVA;
 	}
 
 	public void setPartitaIVA(String partitaIVA) {
@@ -76,7 +84,7 @@ public class Provider {
 	}
 
 	public String getTelefono() {
-		return telefono;
+		return this.telefono;
 	}
 
 	public void setTelefono(String phoneNumber) {
@@ -84,7 +92,7 @@ public class Provider {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -92,7 +100,7 @@ public class Provider {
 	}
 
 	public Address getIndirizzo() {
-		return indirizzo;
+		return this.indirizzo;
 	}
 
 	public void setIndirizzo(Address address) {
@@ -106,6 +114,8 @@ public class Provider {
 	public void setProdotti(List<Product> products) {
 		this.prodotti = products;
 	}
+	
+	//FINE METODI GET E SET
 
 	@Override
 	public int hashCode() {

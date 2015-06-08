@@ -19,7 +19,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
 @Table(name="Orders")
 @NamedQueries({
@@ -61,8 +60,17 @@ public class Order {
 		return this.lineeDiOrdine.add(or);
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
+	
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -70,7 +78,7 @@ public class Order {
 	}
 
 	public Date getDataAperturaOrdine() {
-		return dataAperturaOrdine;
+		return this.dataAperturaOrdine;
 	}
 
 	public void setDataAperturaOrdine( Date creationTime) {
@@ -79,7 +87,7 @@ public class Order {
 	
 
 	public Date getDataChiusuraOrdine() {
-		return dataChiusuraOrdine;
+		return this.dataChiusuraOrdine;
 	}
 
 	public void setDataChiusuraOrdine(Date dataChiusuraOrdine) {
@@ -87,7 +95,7 @@ public class Order {
 	}
 
 	public Date getDataEvasioneOrdine() {
-		return dataEvasioneOrdine;
+		return this.dataEvasioneOrdine;
 	}
 
 	public void setDataEvasioneOrdine( Date dataEvasioneOrdine) {
@@ -95,7 +103,7 @@ public class Order {
 	}
 
 	public Customer getCliente() {
-		return cliente;
+		return this.cliente;
 	}
 
 	public void setCliente(Customer customer) {
@@ -103,12 +111,14 @@ public class Order {
 	}
 
 	public List<OrderLine> getLineeDiOrdine() {
-		return lineeDiOrdine;
+		return this.lineeDiOrdine;
 	}
 
 	public void setLineeDiOrdine(List<OrderLine> orderLines) {
 		this.lineeDiOrdine = orderLines;
 	}
+	
+	//FINE METODI GET E SET
 
 	@Override
 	public int hashCode() {

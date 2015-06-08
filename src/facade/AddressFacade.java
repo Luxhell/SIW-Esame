@@ -5,12 +5,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import model.Address;
-
 import java.util.List;
-
-
 
 @Stateless
 @EJB(name="ejb/AddressFacade", beanInterface=AddressFacade.class, beanName="AddressFacade")

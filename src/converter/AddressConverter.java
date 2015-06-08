@@ -7,7 +7,6 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
 import facade.AddressFacade;
 import model.Address;
 

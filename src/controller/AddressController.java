@@ -3,10 +3,8 @@ package controller;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-
 import model.Address;
 import facade.AddressFacade;
 
@@ -33,6 +31,12 @@ public class AddressController {
 		List<Address> temp = this.addressFacade.getAllAddress();
 		return(temp!=null ? temp : new LinkedList<Address>());
 	}
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
 	
 	public String getVia() {
 		return via;
@@ -90,5 +94,7 @@ public class AddressController {
 		this.addressFacade = addressFacade;
 	}
 	
+	
+	//FINE METODI GET E SET
 
 }

@@ -1,11 +1,9 @@
 package controller;
 
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import model.Product;
 import model.Provider;
 import facade.ProductFacade;
@@ -59,6 +57,24 @@ public class ProductController {
 		}
 	}
 	
+	public List<Product> getAll(){
+		return this.prodottoFacade.getAll();
+	}
+		
+	public String dettagli(Product prodotto){
+		this.prodotto = prodotto;
+		return "product"; //product.xhtml
+	}
+	
+	public String goLogin(){
+		return "login"; //login.xhtml
+	}
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
 	
 	public String getNome() {
 		return nome;
@@ -132,27 +148,16 @@ public class ProductController {
 		return this.fornitore;
 	}
 
-	public List<Product> getAll(){
-		return this.prodottoFacade.getAll();
-	}
-		
-	public String dettagli(Product prodotto){
-		this.prodotto = prodotto;
-		return "product"; //product.xhtml
-	}
-	
-	public String goLogin(){
-		return "login"; //login.xhtml
-	}
-
 	public ProviderManager getSession() {
-		return session;
+		return this.session;
 	}
 
 	public void setSession(ProviderManager session) {
 		this.session = session;
 	}
 	
+
+	//FINE METODI GET E SET
 	
 
 }

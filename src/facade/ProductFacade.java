@@ -39,7 +39,6 @@ public class ProductFacade {
 		return product;
 	}
 	
-	
 	public Product getProduct(Long id) {
 		TypedQuery<Product> query = this.em.createNamedQuery("Product.findProduct", Product.class);
 	    query.setParameter("id", id);
@@ -58,8 +57,6 @@ public class ProductFacade {
     private void deleteProduct(Product product) {
         em.remove(product);
     }
-    
-    
 
 	public void deleteProduct(Long id) {
         Product product = getProduct(id);

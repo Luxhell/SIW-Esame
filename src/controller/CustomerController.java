@@ -1,11 +1,9 @@
 package controller;
 
 import java.util.Date;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import model.Address;
 import model.Customer;
 import facade.CustomerFacade;
@@ -80,18 +78,11 @@ public class CustomerController {
     	}	
     }
     
-//    public String logout(){
-//    	Customer c = this.session.getCurrent();
-//    	if(c==null)
-//    		return "loginErr"; //loginErr.xhtml;
-//    	else{
-//    		this.session.logout();
-//    		if(this.session.isAdmin())
-//    			return "logout"; //logout.xhtml
-//    		return "logout"; //index_customer.xhtml
-//    	}	
-//    }
-
+    
+    
+    
+    
+	//INIZIO METODI GET E SET
 
 	public String getNome() {
 		return nome;
@@ -206,6 +197,6 @@ public class CustomerController {
 	}
 	
 	
-
+	//FINE METODI GET E SET
 
 }

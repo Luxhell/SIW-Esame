@@ -3,7 +3,6 @@ package controller;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-
 import model.Order;
 import model.OrderLine;
 import model.Product;
@@ -33,8 +32,16 @@ public class OrderLineController {
 		return "orderLine"; //pagina: orderLine.xhtml
 	}
 
+
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
+
 	public Float getPrezzoUnitario() {
-		return prezzoUnitario;
+		return this.prezzoUnitario;
 	}
 
 	public void setPrezzoUnitario(Float prezzoUnitario) {
@@ -42,7 +49,7 @@ public class OrderLineController {
 	}
 
 	public Integer getQuantita() {
-		return quantita;
+		return this.quantita;
 	}
 
 	public void setQuantita(Integer quantita) {
@@ -50,7 +57,7 @@ public class OrderLineController {
 	}
 
 	public Order getOrdine() {
-		return ordine;
+		return this.ordine;
 	}
 
 	public void setOrdine(Order ordine) {
@@ -58,7 +65,7 @@ public class OrderLineController {
 	}
 
 	public Product getProdotto() {
-		return prodotto;
+		return this.prodotto;
 	}
 
 	public void setProdotto(Product prodotto) {
@@ -66,7 +73,7 @@ public class OrderLineController {
 	}
 
 	public OrderLine getOrderLine() {
-		return orderLine;
+		return this.orderLine;
 	}
 
 	public void setOrderLine(OrderLine orderLine) {
@@ -74,13 +81,13 @@ public class OrderLineController {
 	}
 
 	public OrderLineFacade getOrderLineFacade() {
-		return orderLineFacade;
+		return this.orderLineFacade;
 	}
 
 	public void setOrderLineFacade(OrderLineFacade orderLineFacade) {
 		this.orderLineFacade = orderLineFacade;
 	}
 	
-	
+	//FINE METODI GET E SET
 
 }

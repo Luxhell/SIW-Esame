@@ -1,12 +1,10 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import model.Address;
 import model.Product;
 import model.Provider;
@@ -52,8 +50,7 @@ public class ProviderController {
 		return "provider"; //pagina: provider.xhtml
 	}
 	
-	//ERROREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-    public List<Product> getAllMyProducts(){
+	public List<Product> getAllMyProducts(){
     	return this.session.getCurrent().getProdotti();
     }
     
@@ -76,14 +73,18 @@ public class ProviderController {
     	}	
     }
 	
-//	public String dettagli(Product product){
-//		this.prodotto = product;
-//		return "product";
-//	}
-	
 	public List<Provider> getAll(){
 		return providerFacade.getAll();
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
 
 	public ProviderManager getSession() {
 		return session;
@@ -191,5 +192,6 @@ public class ProviderController {
 		this.prodotto = prodotto;
 	}
 
+	//FINE METODI GET E SET
 
 }

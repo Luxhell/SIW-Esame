@@ -1,9 +1,7 @@
 package model;
 
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -43,9 +41,15 @@ public class Product {
 	public boolean addFornitore(Provider provider){
 		return this.fornitori.add(provider);
 	}
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
 
 	public Long getId() {
-		return id;
+		return this.id;
 	}
 
 	public void setId(Long id) {
@@ -53,7 +57,7 @@ public class Product {
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String nome) {
@@ -61,7 +65,7 @@ public class Product {
 	}
 
 	public String getCodice() {
-		return codice;
+		return this.codice;
 	}
 
 	public void setCodice(String codice) {
@@ -69,7 +73,7 @@ public class Product {
 	}
 
 	public String getDescrizione() {
-		return descrizione;
+		return this.descrizione;
 	}
 
 	public void setDescrizione(String descrizione) {
@@ -77,7 +81,7 @@ public class Product {
 	}
 
 	public Float getPrezzo() {
-		return prezzo;
+		return this.prezzo;
 	}
 
 	public void setPrezzo(Float prezzo) {
@@ -85,12 +89,22 @@ public class Product {
 	}
 
 	public Float getQuantita() {
-		return quantita;
+		return this.quantita;
 	}
 
 	public void setQuantita(Float quantita) {
 		this.quantita = quantita;
 	}
+	
+	public List<Provider> getFornitori() {
+		return fornitori;
+	}
+
+	public void setFornitori(List<Provider> fornitori) {
+		this.fornitori = fornitori;
+	}
+	
+	//FINE METODI GET E SET
 
 	@Override
 	public int hashCode() {
@@ -115,14 +129,6 @@ public class Product {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
-	public List<Provider> getFornitori() {
-		return fornitori;
-	}
-
-	public void setFornitori(List<Provider> fornitori) {
-		this.fornitori = fornitori;
 	}
 	
 	@Override

@@ -79,6 +79,14 @@ public class Customer {
 		return this.ordini.add(order);
 	}
 	
+	
+	
+	
+	
+	
+	
+	//INIZIO METODI GET E SET
+	
 	public Long getId() {
 		return id;
 	}
@@ -88,7 +96,7 @@ public class Customer {
 	}
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public void setNome(String firstName) {
@@ -96,7 +104,7 @@ public class Customer {
 	}
 
 	public String getCognome() {
-		return cognome;
+		return this.cognome;
 	}
 
 	public void setCognome(String lastName) {
@@ -104,7 +112,7 @@ public class Customer {
 	}
 
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
@@ -112,7 +120,7 @@ public class Customer {
 	}
 
 	public Date getDataNascita() {
-		return dataNascita;
+		return this.dataNascita;
 	}
 
 	public void setDataNascita(java.util.Date dateOfBirth) {
@@ -120,7 +128,7 @@ public class Customer {
 	}
 
 	public Date getDataRegistrazione() {
-		return dataRegistrazione;
+		return this.dataRegistrazione;
 	}
 
 	public void setDataRegistrazione(java.util.Date registrationDate) {
@@ -128,7 +136,7 @@ public class Customer {
 	}
 
 	public Address getIndirizzo() {
-		return indirizzo;
+		return this.indirizzo;
 	}
 
 	public void setIndirizzo(Address address) {
@@ -136,7 +144,7 @@ public class Customer {
 	}
 
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
@@ -144,7 +152,7 @@ public class Customer {
 	}
 
 	public List<Order> getOrdini() {
-		return ordini;
+		return this.ordini;
 	}
 
 	public void setOrdini(List<Order> orders) {
@@ -153,12 +161,15 @@ public class Customer {
 
 
 	public Boolean getIsAdmin() {
-		return isAdmin;
+		return this.isAdmin;
 	}
 
 	public void setIsAdmin(Boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+	
+	
+	//FINE METODI GET E SET
 
 	@Override
 	public int hashCode() {

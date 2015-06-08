@@ -9,7 +9,6 @@ import javax.persistence.TypedQuery;
 import model.Address;
 import model.Product;
 import model.Provider;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,7 +110,6 @@ public class ProviderFacade {
 		} catch (NoResultException e) {
 			return null;
 		}
-
 	}
 
 }
