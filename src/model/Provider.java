@@ -23,8 +23,8 @@ import javax.persistence.OneToOne;
 	@NamedQuery(name = "Provider.findAllProvider", query = "SELECT p FROM Provider p"),
 	
 	@NamedQuery(name = "Provider.findProviderByEmail", query = "SELECT p FROM Provider p WHERE p.email = :email"),
-	@NamedQuery(name = "Provider.findProviderByPartitaIVA", query = "SELECT p FROM Provider p WHERE p.partitaIVA = :partitaIVA")
-})
+	@NamedQuery(name = "Provider.findProviderByPartitaIVA", query = "SELECT p FROM Provider p WHERE p.partitaIVA = :partitaIVA"),
+	})
 public class Provider {
 	
 	@Id
