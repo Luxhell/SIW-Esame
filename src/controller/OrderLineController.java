@@ -8,7 +8,7 @@ import model.OrderLine;
 import model.Product;
 import facade.OrderLineFacade;
 
-@ManagedBean(name = "orderController")
+@ManagedBean(name = "orderLineController")
 public class OrderLineController {
 	
 	

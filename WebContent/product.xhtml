@@ -15,19 +15,16 @@
 	<div>Quantità: ${productController.prodotto.quantita}</div>
 
 	<div>
-		<h:form>
+
 		Fornitori di questo prodotto:
 		<c:forEach var="fornitore"
-				items="#{productController.prodotto.fornitori}">
+			items="#{productController.prodotto.fornitori}">
+			<h:form>
+				<h:commandButton action="dove_mi_stai_mandando"
+					value="#{fornitore.email} #{fornitore.partitaIVA}" />
+			</h:form>
+		</c:forEach>
 
-				<!-- 				<h:commandLink action="#{providerController.dettagli(fornitore)}" -->
-				<!-- 					value="#{fornitore.email} #{fornitore.partitaIVA}"> -->
-				<!-- 				</h:commandLink> -->
-
-				<h:outputText value="#{fornitore.email} #{fornitore.partitaIVA}" />
-
-			</c:forEach>
-		</h:form>
 	</div>
 
 </h:body>
