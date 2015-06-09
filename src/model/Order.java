@@ -52,8 +52,8 @@ public class Order {
 	private List<OrderLine> lineeDiOrdine;
 	
 	public Order(){
-		this.cliente = new Customer();
 		this.lineeDiOrdine = new ArrayList<OrderLine>();
+		this.dataAperturaOrdine = new Date();
 	}
 
 	public boolean addLineaDiOrdine(OrderLine or){

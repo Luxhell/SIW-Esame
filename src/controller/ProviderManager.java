@@ -25,6 +25,7 @@ public class ProviderManager {
 		return (this.current != null);
 	}
 	
+
 	
 	
 	

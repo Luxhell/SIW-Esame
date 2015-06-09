@@ -9,7 +9,10 @@
 </h:head>
 <h:body>
 	<div>
-	<h:outputLink value="products_customer.xhtml">Lista di tutti i prodotti</h:outputLink>
+		<h:form>
+			<h:commandLink value="Lista di tutti i prodotti"
+				action="#{customerManager.visualizzaProdotti}" />
+		</h:form>
 	</div>
 
 	<h:form>

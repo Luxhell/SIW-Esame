@@ -67,7 +67,7 @@ public class Customer {
 		this.ordini = new ArrayList<Order>();
 	}
 	
-	public Order getOrdineParticolare(Long id){
+	public Order getOrdineSpecifico(Long id){
 			for(Order o: this.ordini){
 				if(o.getId().equals(id))
 					return o;
@@ -78,6 +78,8 @@ public class Customer {
 	public boolean addOrdine(Order order){
 		return this.ordini.add(order);
 	}
+	
+	
 	
 	
 	

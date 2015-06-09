@@ -1,9 +1,11 @@
 package controller;
 
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import model.Address;
 import model.Product;
 import model.Provider;
@@ -57,7 +59,7 @@ public class ProviderController {
     public List<Product> getAllProducts(){
     		return this.provider.getProdotti();
     }	
-    
+    //SECONDO ME NON RICORDA CHI SIA IL PROVIDER E LO METTE A NULL
 	public String dettagli(Provider provider){
 		this.provider = provider;
 		return "provider";
@@ -78,7 +80,10 @@ public class ProviderController {
 	}
 	
 	
-	
+	//metodo aggiunto per test
+	public String goIndex(){
+		return "index"; //index.xhtml
+	}
 	
 	
 	

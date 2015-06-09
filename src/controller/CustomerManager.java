@@ -3,7 +3,9 @@ package controller;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+
 import model.Customer;
+import model.Order;
 
 @ManagedBean(name = "customerManager")
 @SessionScoped
@@ -28,6 +30,19 @@ public class CustomerManager {
 		return (this.current != null);
 	}
 
+	public String visualizzaProdotti(){
+		Order o = new Order();
+		this.current.addOrdine(o);
+		return "products_customer"; //products_customer.xhtml
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
