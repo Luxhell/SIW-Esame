@@ -47,7 +47,7 @@ public class ProviderController {
 		this.indirizzo.setStato(stato);
 		this.indirizzo.setCap(cap);
 		this.indirizzo.setRegione(regione);
-		this.provider = providerFacade.createProvider(partitaIVA, telefono, email, indirizzo);
+		this.provider = providerFacade.createProvider(partitaIVA.toLowerCase(), telefono, email.toLowerCase(), indirizzo);
 		return "provider"; //pagina: provider.xhtml
 	}
 	
@@ -66,7 +66,7 @@ public class ProviderController {
 	}
 	
 	public String login(){
-    	Provider p = this.providerFacade.getProvider(partitaIVA, email);
+    	Provider p = this.providerFacade.getProvider(partitaIVA.toLowerCase(), email.toLowerCase());
     	if(p==null)
     		return "loginProviderErr"; //loginProviderErr.xhtml;
     	else{

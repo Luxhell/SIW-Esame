@@ -1,17 +1,23 @@
 package controller;
 
 import java.util.Date;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import model.Address;
 import model.Customer;
+import model.Order;
+import model.OrderLine;
+import model.Product;
 import facade.CustomerFacade;
-
+import facade.OrderFacade;
 
 @ManagedBean(name = "customerController")
 public class CustomerController {
-	
+
 	private String nome;
 	private String cognome;
 	private String email;
@@ -24,22 +30,24 @@ public class CustomerController {
 	private String stato;
 	private String cap;
 	private String regione;
-	 
+
 	private Customer customer;
 
 	@EJB
 	private CustomerFacade customerFacade;
 	
+	@EJB
+	private OrderFacade orderFacade;
+
 	@ManagedProperty(value = "#{customerManager}")
 	private CustomerManager session;
-	
-	
-	public CustomerController(){
-		
+
+	public CustomerController() {
+
 	}
-	
-	public String createCustomer(){	
-		Address indirizzo=new Address();
+
+	public String createCustomer() {
+		Address indirizzo = new Address();
 		indirizzo.setVia(via);
 		indirizzo.setCitta(citta);
 		indirizzo.setCap(cap);
@@ -48,12 +56,13 @@ public class CustomerController {
 		this.isAdmin = false;
 		this.dataRegistrazione = new Date();
 
-		this.customer = customerFacade.createCustomer(nome, cognome, email, dataNascita, indirizzo, password, isAdmin, dataRegistrazione);
-		return "customer"; //pagina: provider.xhtml
+		this.customer = customerFacade.createCustomer(nome, cognome, email.toLowerCase(),
+				dataNascita, indirizzo, password, isAdmin, dataRegistrazione);
+		return "customer"; // pagina: provider.xhtml
 	}
-	
-	public String createAdmin(){	
-		Address indirizzo=new Address();
+
+	public String createAdmin() {
+		Address indirizzo = new Address();
 		indirizzo.setVia(via);
 		indirizzo.setCitta(citta);
 		indirizzo.setCap(cap);
@@ -62,27 +71,55 @@ public class CustomerController {
 		this.isAdmin = true;
 		this.dataRegistrazione = new Date();
 
-		this.customer = customerFacade.createCustomer(nome, cognome, email, dataNascita, indirizzo, password, isAdmin, dataRegistrazione);
-		return "customer"; //pagina: provider.xhtml
+		this.customer = customerFacade.createCustomer(nome, cognome, email.toLowerCase(),
+				dataNascita, indirizzo, password, isAdmin, dataRegistrazione);
+		return "customer"; // pagina: provider.xhtml
+	}
+
+	public String login() {
+		Customer c = this.customerFacade.getCustomer(email.toLowerCase(), password);
+		if (c == null)
+			return "loginErr"; // loginErr.xhtml;
+		else {
+			this.session.login(c);
+			if (this.session.isAdmin())
+				return "index_admin"; // index_admin.xhtml
+			return "index_customer"; // index_customer.xhtml
+		}
+	}
+
+	public void aggiungiAlCarrello (Product product){
+		Order ordineCorrente = this.session.getCurrent().getOrdini().get(0);
+    	if(this.orderFacade.checkProduct(ordineCorrente.getId(), product)) // metodo per vedere se esiste già quel prodotto nell ordine
+    		this.orderFacade.aggiornaQuantita(ordineCorrente.getId(), product);
+    	else
+    		this.orderFacade.aggiundiRigaOrdine(ordineCorrente.getId(), product);
+    }
+	
+	public List<OrderLine> visualizzaCarrello(){
+		Order ordineCorrente = this.session.getCurrent().getOrdini().get(0);
+		return ordineCorrente.getLineeDiOrdine();
 	}
 	
-    public String login(){
-    	Customer c = this.customerFacade.getCustomer(email, password);
-    	if(c==null)
-    		return "loginErr"; //loginErr.xhtml;
-    	else{
-    		this.session.login(c);
-    		if(this.session.isAdmin())
-    			return "index_admin"; //index_admin.xhtml
-    		return "index_customer"; //index_customer.xhtml
-    	}	
-    }
-    
-    
-    
-    
-    
-	//INIZIO METODI GET E SET
+	public String visualizzaProdotti(){
+		this.orderFacade.createOrder(this.session.getCurrent());
+		return "products_customer"; //products_customer.xhtml
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	// INIZIO METODI GET E SET
 
 	public String getNome() {
 		return nome;
@@ -106,7 +143,7 @@ public class CustomerController {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}	
+	}
 
 	public Date getDataNascita() {
 		return dataNascita;
@@ -195,8 +232,17 @@ public class CustomerController {
 	public void setSession(CustomerManager session) {
 		this.session = session;
 	}
+
+	public OrderFacade getOrderFacade() {
+		return orderFacade;
+	}
+
+	public void setOrderFacade(OrderFacade orderFacade) {
+		this.orderFacade = orderFacade;
+	}
 	
 	
-	//FINE METODI GET E SET
+
+	// FINE METODI GET E SET
 
 }

@@ -61,26 +61,13 @@ public class Order {
 		
 	}
 	
-	public boolean checkProduct(Product product){	
-		for(OrderLine ol : this.lineeDiOrdine)
-			if(ol.getProduct().equals(product)) 
-				return true;
-		return false;
-	}
 	
-	public void aggiornaQuantita(Product product){
-		for(OrderLine ol : this.lineeDiOrdine)
-			if(ol.getProduct().equals(product))
-				ol.setQuantita(ol.getQuantita()+1);
-	}
 	
-	public void aggiundiRigaOrdine(Product product){
-		OrderLine riga = new OrderLine();
-		riga.setProduct(product);
-		riga.setQuantita(1);
-		riga.setPrezzoUnitario(product.getPrezzo());
-		this.lineeDiOrdine.add(riga);
-	}
+	
+	
+	
+	
+	
 	
 	
 	

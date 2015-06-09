@@ -30,7 +30,7 @@ public class OrderController {
 	}
 	
 	public String createOrder(){
-		this.order = orderFacade.createOrder(dataApertura, customer);
+		this.order = orderFacade.createOrder(customer);
 		return "order"; //pagina: order.xhtml
 	}
 	

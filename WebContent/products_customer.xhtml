@@ -24,7 +24,7 @@
 				<td>${prodotto.prezzo}</td>
 				<td><h:form>
 						<h:commandLink
-							action="#{customerManager.aggiungiAlCarrello(prodotto)}"
+							action="#{customerController.aggiungiAlCarrello(prodotto)}"
 							value="Aggiungi" ></h:commandLink>
 					</h:form></td>
 			</tr>
@@ -34,7 +34,7 @@
 
 	<h:form>
 		<h:commandButton value="Visualizza carrello"
-			action="#{customerManager.visualizzaCarrello}" />
+			action="carrello.xhtml" />
 	</h:form>
 
 	<h:form>
