@@ -7,11 +7,16 @@
 	<title>Prodotti</title>
 </h:head>
 <h:body>
-<h:form>
-	<div>
-		<h:button value="Effettua il Login" outcome="login.xhtml" />
-	</div>
-</h:form>
+<table>
+  <tr>
+		<td><h:form>
+
+				<h:button value="Effettua il Login" outcome="login.xhtml" />
+
+			</h:form></td>
+		<td><a href="javascript:history.go(-1);">Back</a></td>
+  </tr>
+</table>
 	<table>
 		<h:form>
 			<tr>
@@ -20,10 +25,12 @@
 			</tr>
 			<c:forEach var="prodotto" items="#{productController.getAll()}">
 				<tr>
-					<td><h:commandLink
+					<td>
+						<!-- QUI VI E' UN PROBLEMA --> <h:commandLink
 							action="#{productController.dettagli(prodotto)}"
 							value="#{prodotto.nome}">
-						</h:commandLink></td>
+						</h:commandLink>
+					</td>
 					<td>${prodotto.prezzo}</td>
 				</tr>
 			</c:forEach>

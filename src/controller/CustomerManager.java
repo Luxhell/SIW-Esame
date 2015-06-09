@@ -6,11 +6,13 @@ import javax.faces.context.FacesContext;
 
 import model.Customer;
 import model.Order;
+import model.Product;
 
 @ManagedBean(name = "customerManager")
 @SessionScoped
 public class CustomerManager {
 	private Customer current;
+	private Order ordine;
 
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext()
@@ -31,10 +33,19 @@ public class CustomerManager {
 	}
 
 	public String visualizzaProdotti(){
-		Order o = new Order();
-		this.current.addOrdine(o);
+		this.ordine = new Order();
 		return "products_customer"; //products_customer.xhtml
 	}
+	
+	public void aggiungiAlCarrello (Product product){
+    		if(this.ordine.checkProduct(product)) // metodo per vedere se esiste già quel prodotto nell ordine
+    	
+    		this.ordine.aggiornaQuantita(product);
+    	else
+    		this.ordine.aggiundiRigaOrdine(product);
+    	
+    }
+	
 	
 	
 	

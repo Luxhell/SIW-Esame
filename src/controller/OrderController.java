@@ -14,9 +14,9 @@ import facade.OrderFacade;
 public class OrderController {
 	
 	
-	private java.util.Date dataApertura;
-	private java.util.Date dataChiusura;
-	private java.util.Date dataEvasione;
+	private Date dataApertura;
+	private Date dataChiusura;
+	private Date dataEvasione;
 	private Customer customer;
 	
 	private Order order;
@@ -30,7 +30,7 @@ public class OrderController {
 	}
 	
 	public String createOrder(){
-		this.order = orderFacade.createOrder(dataApertura, dataChiusura, dataEvasione, customer);
+		this.order = orderFacade.createOrder(dataApertura, customer);
 		return "order"; //pagina: order.xhtml
 	}
 	
@@ -54,13 +54,17 @@ public class OrderController {
 	
 	
 	
+	
+	
+	
+	
 	//INIZIO METODI GET E SET
 	
 	public Date getDataApertura() {
 		return this.dataApertura;
 	}
 
-	public void setDataApertura(java.util.Date dataApertura) {
+	public void setDataApertura(Date dataApertura) {
 		this.dataApertura = dataApertura;
 	}
 
@@ -68,7 +72,7 @@ public class OrderController {
 		return this.dataChiusura;
 	}
 
-	public void setDataChiusura(java.util.Date dataChiusura) {
+	public void setDataChiusura(Date dataChiusura) {
 		this.dataChiusura = dataChiusura;
 	}
 
@@ -76,7 +80,7 @@ public class OrderController {
 		return this.dataEvasione;
 	}
 
-	public void setDataEvasione(java.util.Date dataEvasione) {
+	public void setDataEvasione(Date dataEvasione) {
 		this.dataEvasione = dataEvasione;
 	}
 

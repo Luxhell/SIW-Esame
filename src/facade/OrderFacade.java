@@ -5,8 +5,11 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
 import model.Customer;
 import model.Order;
+
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -24,11 +27,9 @@ public class OrderFacade {
 
 	}
     
-	public Order createOrder(java.util.Date dataApertura, java.util.Date dataChiusura, java.util.Date dataEvasione, Customer customer) {
+	public Order createOrder(Date dataApertura, Customer customer) {
 		Order order = new Order();
 		order.setDataAperturaOrdine(dataApertura);
-		order.setDataChiusuraOrdine(dataChiusura);
-		order.setDataEvasioneOrdine(dataEvasione);
 		order.setCliente(customer);
 		this.em.persist(order);
 		return order;

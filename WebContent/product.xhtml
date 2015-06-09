@@ -8,6 +8,10 @@
 </h:head>
 <h:body>
 
+	<div>
+		<a href="javascript:history.go(-1);">Back</a>
+	</div>
+
 	<div>Nome: ${productController.prodotto.nome}</div>
 	<div>Codice: ${productController.prodotto.codice}</div>
 	<div>Descrizione: ${productController.prodotto.descrizione}</div>
@@ -26,6 +30,8 @@
 		</c:forEach>
 
 	</div>
+	
+
 
 </h:body>
 </html>

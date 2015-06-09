@@ -27,12 +27,17 @@
 				<td><h:form>
 						<h:commandLink
 							action="#{providerManager.cancellaProdotto(prodotto)}"
-							value="Aggiungi" />
+							value="Cancella" />
 					</h:form></td>
 			</tr>
 		</c:forEach>
 	</table>
-
+	
+	
+	
+	<div>
+		<a href="javascript:history.go(-1);">Back</a>
+	</div>
 
 	<h:form>
 		<h:commandButton value="Logout" action="#{providerManager.logout}" />
