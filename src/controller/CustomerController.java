@@ -31,9 +31,7 @@ public class CustomerController {
 	private String cap;
 	private String regione;
 
-	private Customer customer;
-	private Order ordineCorrente; // >>NEW<<
-	
+	private Customer customer;	
 	
 
 	@EJB
@@ -93,19 +91,19 @@ public class CustomerController {
 
 	public void aggiungiAlCarrello (Product product){
 		//Order ordineCorrente = this.session.getCurrent().getOrdini().get(0);
-    	if(this.orderFacade.checkProduct(this.ordineCorrente.getId(), product)) // metodo per vedere se esiste già quel prodotto nell ordine
-    		this.orderFacade.aggiornaQuantita(this.ordineCorrente.getId(), product);
+    	if(this.orderFacade.checkProduct(this.session.getOrdineCorrente().getId(), product)) // metodo per vedere se esiste già quel prodotto nell ordine
+    		this.orderFacade.aggiornaQuantita(this.session.getOrdineCorrente().getId(), product);
     	else
-    		this.orderFacade.aggiundiRigaOrdine(this.ordineCorrente.getId(), product);
+    		this.orderFacade.aggiundiRigaOrdine(this.session.getOrdineCorrente().getId(), product);
     }
 	
 	public List<OrderLine> visualizzaCarrello(){
 		//Order ordineCorrente = this.session.getCurrent().getOrdini().get(0);
-		return this.ordineCorrente.getLineeDiOrdine();
+		return this.session.getOrdineCorrente().getLineeDiOrdine();
 	}
 	
 	public String visualizzaProdotti(){
-		this.ordineCorrente = this.orderFacade.createOrder(this.session.getCurrent());
+		this.session.nuovoOrdine(this.orderFacade.createOrder(this.session.getCurrent()));
 		return "products_customer"; //products_customer.xhtml
 	}
 	
@@ -244,13 +242,6 @@ public class CustomerController {
 		this.orderFacade = orderFacade;
 	}
 	
-	public Order getOrdineCorrente() {
-		return ordineCorrente;
-	}
-
-	public void setOrdineCorrente(Order ordineCorrente) {
-		this.ordineCorrente = ordineCorrente;
-	}
 
 	// FINE METODI GET E SET
 

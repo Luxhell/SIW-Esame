@@ -5,11 +5,13 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import model.Customer;
+import model.Order;
 
 @ManagedBean(name = "customerManager")
 @SessionScoped
 public class CustomerManager {
 	private Customer current;
+	private Order ordineCorrente; // >>NEW<<
 
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext()
@@ -29,6 +31,13 @@ public class CustomerManager {
 		return (this.current != null);
 	}
 
+	public void nuovoOrdine(Order o){
+		this.ordineCorrente = o;
+	}
+	
+	public boolean ordineAperto(){
+		return (this.ordineCorrente!=null);
+	}
 	
 	
 	
@@ -39,15 +48,15 @@ public class CustomerManager {
 	
 	
 	
-	
-	
-	
-	
-	
+		
 	//INIZIO METODI GET E SET
 	
 	public Customer getCurrent() {
 		return this.current;
+	}
+	
+	public Order getOrdineCorrente(){
+		return this.ordineCorrente;
 	}
 	
 	//FINE METODI GET E SET
