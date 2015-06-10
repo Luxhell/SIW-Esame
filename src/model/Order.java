@@ -32,15 +32,15 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable = false, length = 254)
+	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAperturaOrdine;
 	
-	@Column(length = 254)
+	@Column(nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataChiusuraOrdine;
 	
-	@Column(length = 254)
+	@Column(nullable = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEvasioneOrdine;
 	
@@ -53,12 +53,10 @@ public class Order {
 	
 	public Order(){
 		this.lineeDiOrdine = new ArrayList<OrderLine>();
-		this.dataAperturaOrdine = new Date();
 	}
 
 	public boolean addLineaDiOrdine(OrderLine or){
 		return this.lineeDiOrdine.add(or);
-		
 	}
 	
 	
