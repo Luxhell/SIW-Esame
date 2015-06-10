@@ -31,12 +31,11 @@ public class OrderFacade {
     
 	//ERRORE NEL CREATE. IL PERSIST NON VA
 	public Order createOrder( Customer customer) {
-		Customer cliente = this.em.find(Customer.class, customer.getId());
 		Order order = new Order();
 		order.setDataAperturaOrdine(new Date());
-		order.setCliente(cliente);
-		cliente.addOrdine(order);
-		this.em.persist(cliente);
+		order.setCliente(customer);
+		customer = this.em.merge(customer);
+		customer.addOrdine(order);
 		this.em.persist(order);
 		return order;
 	}
