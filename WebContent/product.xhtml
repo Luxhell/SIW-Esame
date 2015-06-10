@@ -2,7 +2,8 @@
 <html lang="it" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<title>Prodotto</title>
 </h:head>
@@ -19,18 +20,18 @@
 	<div>Quantità: ${productController.prodotto.quantita}</div>
 
 	<div>
-
 		Fornitori di questo prodotto:
-		<c:forEach var="fornitore"
-			items="#{productController.prodotto.fornitori}">
-			<h:form>
-				<h:commandButton action="dove_mi_stai_mandando"
-					value="#{fornitore.email} #{fornitore.partitaIVA}" />
-			</h:form>
-		</c:forEach>
+		<h:form>
+			<ui:repeat var="fornitore"
+				value="#{productController.prodotto.fornitori}">
 
+				<h:commandButton action="#{providerController.dettagli(fornitore)}"
+					value="#{fornitore.email} #{fornitore.partitaIVA}" />
+
+			</ui:repeat>
+		</h:form>
 	</div>
-	
+
 
 
 </h:body>
