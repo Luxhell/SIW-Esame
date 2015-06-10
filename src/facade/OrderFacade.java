@@ -34,7 +34,7 @@ public class OrderFacade {
 		Order order = new Order();
 		order.setDataAperturaOrdine(new Date());
 		order.setCliente(customer);
-
+		this.em.refresh(customer);
 		this.em.persist(order);
 		return order;
 	}
