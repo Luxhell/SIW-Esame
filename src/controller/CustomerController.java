@@ -14,6 +14,7 @@ import model.OrderLine;
 import model.Product;
 import facade.CustomerFacade;
 import facade.OrderFacade;
+import facade.OrderLineFacade;
 
 @ManagedBean(name = "customerController")
 public class CustomerController {
@@ -39,6 +40,9 @@ public class CustomerController {
 	
 	@EJB
 	private OrderFacade orderFacade;
+	
+	@EJB
+	private OrderLineFacade orderLineFacade;
 
 	@ManagedProperty(value = "#{customerManager}")
 	private CustomerManager session;
@@ -90,11 +94,11 @@ public class CustomerController {
 	}
 
 	public void aggiungiAlCarrello (Product product){
-		//Order ordineCorrente = this.session.getCurrent().getOrdini().get(0);
-    	if(this.orderFacade.checkProduct(this.session.getOrdineCorrente().getId(), product)) // metodo per vedere se esiste già quel prodotto nell ordine
-    		this.orderFacade.aggiornaQuantita(this.session.getOrdineCorrente().getId(), product);
+		if(this.orderFacade.checkProduct(this.session.getOrdineCorrente(), product)) // metodo per vedere se esiste già quel prodotto nell ordine
+    		this.orderFacade.aggiornaQuantita(this.session.getOrdineCorrente(), product);
     	else
-    		this.orderFacade.aggiundiRigaOrdine(this.session.getOrdineCorrente().getId(), product);
+    		//this.orderFacade.aggiundiRigaOrdine(this.session.getOrdineCorrente(), product);
+    		this.orderLineFacade.createOrderLine(product.getPrezzo(), 1, this.session.getOrdineCorrente(), product);
     }
 	
 	public List<OrderLine> visualizzaCarrello(){

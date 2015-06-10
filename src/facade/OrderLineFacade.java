@@ -5,9 +5,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
 import model.Order;
 import model.OrderLine;
 import model.Product;
+
+import java.util.Date;
 import java.util.List;
 
 @Stateless
@@ -31,8 +34,11 @@ public class OrderLineFacade {
 		orderLine.setQuantita(quantity);
 		orderLine.setOrder(order);
 		orderLine.setProduct(product);
+		order = this.em.merge(order);
 		this.em.persist(orderLine);
+		order.addLineaDiOrdine(orderLine);
 		return orderLine;
+		
 	}
 	
 	public OrderLine getOrderLine(Long id) {

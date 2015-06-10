@@ -10,6 +10,7 @@ import model.Customer;
 import model.Order;
 import model.OrderLine;
 import model.Product;
+import facade.OrderLineFacade;
 
 import java.util.Date;
 import java.util.List;
@@ -77,29 +78,18 @@ public class OrderFacade {
 		return null;
 	}
 	
-	public boolean checkProduct(Long idOrdine, Product product){
-		Order temp = getOrder(idOrdine);
-		for(OrderLine ol : temp.getLineeDiOrdine())
+	public boolean checkProduct(Order order, Product product){
+		for(OrderLine ol : order.getLineeDiOrdine())
 			if(ol.getProduct().equals(product)) return true;
 		return false;
 	}
 	
-	public void aggiornaQuantita(Long idOrdine, Product product){
-		Order temp = getOrder(idOrdine);
-		for(OrderLine ol : temp.getLineeDiOrdine())
+	public void aggiornaQuantita(Order order, Product product){
+		for(OrderLine ol : order.getLineeDiOrdine())
 			if(ol.getProduct().equals(product))
 				ol.setQuantita(ol.getQuantita()+1);
-		updateOrder(temp);
+		updateOrder(order);
 	}
 	
-	public void aggiundiRigaOrdine(Long idOrdine, Product product){
-		Order temp = getOrder(idOrdine);
-		OrderLine riga = new OrderLine();
-		riga.setProduct(product);
-		riga.setQuantita(1);
-		riga.setPrezzoUnitario(product.getPrezzo());
-		temp.getLineeDiOrdine().add(riga);
-		updateOrder(temp);
-	}
 
 }
