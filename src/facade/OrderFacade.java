@@ -84,12 +84,17 @@ public class OrderFacade {
 		return false;
 	}
 	
-	public void aggiornaQuantita(Order order, Product product){
+	/*public void aggiornaQuantita(Order order, Product product){
 		for(OrderLine ol : order.getLineeDiOrdine())
 			if(ol.getProduct().equals(product))
 				ol.setQuantita(ol.getQuantita()+1);
 		updateOrder(order);
-	}
+	}*/
 	
-
+	public OrderLine getRigaOrdine(Order order, Product product){
+		for(OrderLine ol : order.getLineeDiOrdine())
+			if(ol.getProduct().equals(product))
+				return ol;
+		return null;
+	}
 }

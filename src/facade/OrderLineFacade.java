@@ -50,18 +50,19 @@ public class OrderLineFacade {
 	public List<OrderLine> getAllOrderLine() {
         return this.em.createNamedQuery("OrderLine.findAllOrderLine", OrderLine.class).getResultList();
 	}
-
-	public void updateOrderLine(OrderLine orderLine) {
-        em.merge(orderLine);
-	}
 	
-    private void deleteOrderLine(OrderLine orderLine) {
-        em.remove(orderLine);
+    public void deleteOrderLine(OrderLine orderLine) {
+        this.em.remove(orderLine);
     }
 
-	public void deleteOrderLine(Long id) {
+	/*public void deleteOrderLine(Long id) {
 		OrderLine orderLine = getOrderLine(id);
         deleteOrderLine(orderLine);
+	}*/
+	
+	public void aggiornaQuantita(OrderLine ol, Integer qty){
+		ol.setQuantita(qty);
+		this.em.merge(ol);
 	}
 
 }

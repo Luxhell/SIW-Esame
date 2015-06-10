@@ -93,13 +93,22 @@ public class CustomerController {
 		}
 	}
 
-	public void aggiungiAlCarrello (Product product){
-		if(this.orderFacade.checkProduct(this.session.getOrdineCorrente(), product)) // metodo per vedere se esiste già quel prodotto nell ordine
-    		this.orderFacade.aggiornaQuantita(this.session.getOrdineCorrente(), product);
-    	else
+	public void aggiungiAlCarrello(Product product){
+		if(this.orderFacade.checkProduct(this.session.getOrdineCorrente(), product)){ // metodo per vedere se esiste già quel prodotto nell ordine
+    		//this.orderFacade.aggiornaQuantita(this.session.getOrdineCorrente(), product);
+			OrderLine temp = this.orderFacade.getRigaOrdine(this.session.getOrdineCorrente(), product);
+			this.orderLineFacade.aggiornaQuantita(temp, temp.getQuantita()+1);
+		}else
     		//this.orderFacade.aggiundiRigaOrdine(this.session.getOrdineCorrente(), product);
     		this.orderLineFacade.createOrderLine(product.getPrezzo(), 1, this.session.getOrdineCorrente(), product);
     }
+	
+	public void eliminaDalCarrello(OrderLine rigaOrdine){
+		if(rigaOrdine.getQuantita()<=1)
+			this.orderLineFacade.deleteOrderLine(rigaOrdine);
+		else
+			this.orderLineFacade.aggiornaQuantita(rigaOrdine, rigaOrdine.getQuantita() -1);
+	}
 	
 	public List<OrderLine> visualizzaCarrello(){
 		//Order ordineCorrente = this.session.getCurrent().getOrdini().get(0);

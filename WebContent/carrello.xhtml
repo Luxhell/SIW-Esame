@@ -14,13 +14,14 @@
 				<th>Nome</th>
 				<th>Quantità</th>
 				<th>Prezzo Unitario</th>
-				
+				<th>Cancella prodotto</th>
 			</tr>
 			<c:forEach var="riga" items="#{customerController.visualizzaCarrello()}">
 				<tr>
 					<td>${riga.prodotto.nome}</td>
 					<td>${riga.quantita}</td>
 					<td>${riga.prezzoUnitario}</td>
+					<td>#{customerController.elimaDalCarrello(riga)}
 				</tr>
 			</c:forEach>
 		</table>
