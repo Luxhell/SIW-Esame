@@ -72,7 +72,8 @@ public class ProductController {
 	}
 	
 	//>>NEW<<
-	public List<Provider> getMyProvider(){
+	public List<Provider> getMyProvider(Product prodotto){
+		this.prodotto = prodotto;
 		return this.prodotto.getFornitori();
 	}
 	
