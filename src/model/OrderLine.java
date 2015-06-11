@@ -18,7 +18,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name="OrderLine.findOrderLine", query="SELECT ol FROM OrderLine ol WHERE ol.id = :id"),
     @NamedQuery(name="OrderLine.findAllOrderLine", query="SELECT ol FROM OrderLine ol"),
-    @NamedQuery(name="OrderLine.findOrderLine2Prodotto", query="SELECT ol FROM OrderLine ol WHERE ol.prodotto = :prodotto")
+    @NamedQuery(name="OrderLine.findOrderLine2Prodotto", query="SELECT ol FROM OrderLine ol WHERE ol.prodotto = :prodotto"),
+    @NamedQuery(name="OrderLine.findOrderLine2ProductOrder", query="SELECT ol FROM OrderLine ol WHERE ol.ordine.id = :idOrder AND ol.prodotto.id = :idProduct")
 })
 public class OrderLine {
 	

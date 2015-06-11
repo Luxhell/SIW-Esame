@@ -9,7 +9,6 @@ import javax.faces.bean.ManagedProperty;
 
 import model.Address;
 import model.Customer;
-import model.Order;
 import model.OrderLine;
 import model.Product;
 import facade.CustomerFacade;
@@ -94,13 +93,12 @@ public class CustomerController {
 	}
 
 	public void aggiungiAlCarrello(Product product){
-		if(this.orderFacade.checkProduct(this.session.getOrdineCorrente(), product)){ // metodo per vedere se esiste già quel prodotto nell ordine
-    		//this.orderFacade.aggiornaQuantita(this.session.getOrdineCorrente(), product);
-			OrderLine temp = this.orderFacade.getRigaOrdine(this.session.getOrdineCorrente(), product);
-			this.orderLineFacade.aggiornaQuantita(temp, temp.getQuantita()+1);
+		// metodo per vedere se esiste già quel prodotto nell ordine
+		if(this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente().getId(), product.getId()) != null){
+			OrderLine OrderLineTemp = this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente().getId(), product.getId());
+			this.orderLineFacade.aggiornaQuantita(OrderLineTemp, (OrderLineTemp.getQuantita())+1);
 		}else
-    		//this.orderFacade.aggiundiRigaOrdine(this.session.getOrdineCorrente(), product);
-    		this.orderLineFacade.createOrderLine(product.getPrezzo(), 1, this.session.getOrdineCorrente(), product);
+    		this.orderLineFacade.createOrderLine(product.getPrezzo(), 15, this.session.getOrdineCorrente(), product);
     }
 	
 	public void eliminaDalCarrello(OrderLine rigaOrdine){

@@ -78,9 +78,13 @@ public class OrderFacade {
 		return null;
 	}
 	
+
+	
 	public boolean checkProduct(Order order, Product product){
-		for(OrderLine ol : order.getLineeDiOrdine())
-			if(ol.getProduct().equals(product)) return true;
+		Long idProdotto = product.getId();
+		for(OrderLine orderLine : order.getLineeDiOrdine())
+			if(orderLine.getProduct().getId() == (idProdotto))
+				return true;
 		return false;
 	}
 	

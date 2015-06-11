@@ -64,5 +64,12 @@ public class OrderLineFacade {
 		ol.setQuantita(qty);
 		this.em.merge(ol);
 	}
+	
+	public OrderLine getOrderLineProductOrder(Long idOrder, Long idProduct) {
+		TypedQuery<OrderLine> query = this.em.createNamedQuery("OrderLine.findOrderLine2ProductOrder", OrderLine.class);
+	    query.setParameter("idOrder", idOrder);
+	    query.setParameter("idProduct", idProduct);
+	    return query.getSingleResult();
+	}
 
 }

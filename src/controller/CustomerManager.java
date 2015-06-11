@@ -11,7 +11,7 @@ import model.Order;
 @SessionScoped
 public class CustomerManager {
 	private Customer current;
-	private Order ordineCorrente; // >>NEW<<
+	private Order ordineCorrente;
 
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext()
@@ -31,8 +31,8 @@ public class CustomerManager {
 		return (this.current != null);
 	}
 
-	public void nuovoOrdine(Order o){
-		this.ordineCorrente = o;
+	public void nuovoOrdine(Order order){
+		this.ordineCorrente = order;
 	}
 	
 	public boolean ordineAperto(){
