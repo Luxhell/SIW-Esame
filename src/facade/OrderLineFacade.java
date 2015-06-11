@@ -65,10 +65,10 @@ public class OrderLineFacade {
 		this.em.merge(ol);
 	}
 	
-	public OrderLine getOrderLineProductOrder(Long idOrder, Long idProduct) {
+	public OrderLine getOrderLineProductOrder(Order order, Product product) {
 		TypedQuery<OrderLine> query = this.em.createNamedQuery("OrderLine.findOrderLine2ProductOrder", OrderLine.class);
-	    query.setParameter("idOrder", idOrder);
-	    query.setParameter("idProduct", idProduct);
+	    query.setParameter("order", order);
+	    query.setParameter("product", product);
 	    return query.getSingleResult();
 	}
 

@@ -94,8 +94,8 @@ public class CustomerController {
 
 	public void aggiungiAlCarrello(Product product){
 		// metodo per vedere se esiste già quel prodotto nell ordine
-		if(this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente().getId(), product.getId()) != null){
-			OrderLine OrderLineTemp = this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente().getId(), product.getId());
+		if(this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente(), product) != null){
+			OrderLine OrderLineTemp = this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente(), product);
 			this.orderLineFacade.aggiornaQuantita(OrderLineTemp, (OrderLineTemp.getQuantita())+1);
 		}else
     		this.orderLineFacade.createOrderLine(product.getPrezzo(), 15, this.session.getOrdineCorrente(), product);
