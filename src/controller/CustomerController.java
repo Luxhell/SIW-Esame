@@ -118,7 +118,10 @@ public class CustomerController {
 		return "products_customer"; //products_customer.xhtml
 	}
 	
-	
+	public String confermaAcquisto(){
+		this.orderFacade.chiudiOrdine(this.session.getOrdineCorrente());
+		return "oraPaga"; //oraPaga.xhtml
+	}
 	
 	
 	

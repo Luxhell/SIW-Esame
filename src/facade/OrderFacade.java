@@ -52,10 +52,6 @@ public class OrderFacade {
         return this.em.createNamedQuery("Order.findAllOrder", Order.class).getResultList();
 	}
 
-	public void updateOrder(Order order) {
-        em.merge(order);
-	}
-	
     private void deleteOrder(Order order) {
         em.remove(order);
     }
@@ -88,17 +84,9 @@ public class OrderFacade {
 		return false;
 	}
 	
-	/*public void aggiornaQuantita(Order order, Product product){
-		for(OrderLine ol : order.getLineeDiOrdine())
-			if(ol.getProduct().equals(product))
-				ol.setQuantita(ol.getQuantita()+1);
-		updateOrder(order);
-	}*/
-	
-	public OrderLine getRigaOrdine(Order order, Product product){
-		for(OrderLine ol : order.getLineeDiOrdine())
-			if(ol.getProduct().equals(product))
-				return ol;
-		return null;
+	public void chiudiOrdine(Order order){
+		order.setDataChiusuraOrdine(new Date());
+		this.em.merge(order);
 	}
+	
 }
