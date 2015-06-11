@@ -98,7 +98,7 @@ public class CustomerController {
 			OrderLine OrderLineTemp = this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente(), product);
 			this.orderLineFacade.aggiornaQuantita(OrderLineTemp, (OrderLineTemp.getQuantita())+1);
 		}else
-    		this.orderLineFacade.createOrderLine(product.getPrezzo(), 15, this.session.getOrdineCorrente(), product);
+    		this.orderLineFacade.createOrderLine(product.getPrezzo(), 1, this.session.getOrdineCorrente(), product);
     }
 	
 	public void eliminaDalCarrello(OrderLine rigaOrdine){

@@ -3,6 +3,7 @@ package facade;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -66,10 +67,14 @@ public class OrderLineFacade {
 	}
 	
 	public OrderLine getOrderLineProductOrder(Order order, Product product) {
-		TypedQuery<OrderLine> query = this.em.createNamedQuery("OrderLine.findOrderLine2ProductOrder", OrderLine.class);
-	    query.setParameter("order", order);
-	    query.setParameter("product", product);
-	    return query.getSingleResult();
+		try{
+			TypedQuery<OrderLine> query = this.em.createNamedQuery("OrderLine.findOrderLine2ProductOrder", OrderLine.class);
+		    query.setParameter("order", order);
+		    query.setParameter("product", product);
+		    return query.getSingleResult();
+		} catch(Exception e){
+			return null;
+		}
 	}
 
 }
