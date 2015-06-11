@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Ordini Da Evadere</title>
+</h:head>
+<h:body>
+	<div>
+		<a href="javascript:history.go(-1);">Back</a>
+	</div>
+
+	<table>
+		<tr>
+			<th>Ordine da evadere - Cliente</th>
+			<th>Evadi</th>
+			<th>Cancella</th>
+		</tr>
+		<h:form>
+			<c:forEach var="ordine"
+				items="#{orderController.getOrdiniDaEvadere()}">
+				<tr>
+				
+						<td><h:commandLink
+								action="#{orderController.dettagli(ordine)}"
+								value="#{ordine.id} #{ordine.cliente}">
+							</h:commandLink></td>
+					
+				
+						<td><h:commandLink
+								action="#{orderController.evadiOrdine(ordine)}"> Evadi </h:commandLink>
+						</td>
+					
+				
+						<td><h:commandLink
+								action="#{customerController.cancellaOrdine(ordine)}"> Cancella </h:commandLink>
+						</td>
+					
+				</tr>
+			</c:forEach>
+
+		</h:form>
+	</table>
+
+</h:body>
+</html>

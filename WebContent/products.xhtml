@@ -18,11 +18,12 @@
   </tr>
 </table>
 	<table>
-		<h:form>
+		
 			<tr>
 				<th>Nome</th>
 				<th>Prezzo</th>
 			</tr>
+			<h:form>
 			<c:forEach var="prodotto" items="#{productController.getAll()}">
 				<tr>
 					<td>

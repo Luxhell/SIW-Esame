@@ -88,5 +88,9 @@ public class OrderFacade {
 		order.setDataChiusuraOrdine(new Date());
 		this.em.merge(order);
 	}
+
+	public List<Order> findAllOrderNotEvavaded() {
+		 return this.em.createNamedQuery("Order.findAllOrderNotEvavaded", Order.class).getResultList();
+	}
 	
 }

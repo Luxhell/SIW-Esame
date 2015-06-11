@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.faces.bean.ManagedProperty;
 
 import model.Address;
 import model.Customer;
+import model.Order;
 import model.OrderLine;
 import model.Product;
 import facade.CustomerFacade;
@@ -122,6 +124,8 @@ public class CustomerController {
 		this.orderFacade.chiudiOrdine(this.session.getOrdineCorrente());
 		return "oraPaga"; //oraPaga.xhtml
 	}
+	
+
 	
 	
 	

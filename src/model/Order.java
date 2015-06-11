@@ -24,6 +24,7 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name="Order.findOrder", query="SELECT o FROM Order o WHERE o.id = :id"),
     @NamedQuery(name="Order.findAllOrder", query="SELECT o FROM Order o"),
+    @NamedQuery(name="Order.findAllOrderNotEvavaded", query="SELECT o FROM Order o WHERE o.dataChiusuraOrdine IS NOT NULL AND o.dataEvasioneOrdine IS NULL"),
     @NamedQuery(name="Order.findOrders2Customer", query="SELECT o FROM Order o WHERE o.cliente.id = :id")
 })
 public class Order {

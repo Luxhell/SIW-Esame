@@ -1,11 +1,14 @@
 package controller;
 
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Date;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+
 import model.Customer;
 import model.Order;
 import facade.OrderFacade;
@@ -48,6 +51,20 @@ public class OrderController {
 		return this.orderFacade.getOrdine(ordini_cliente, id_ordine);
 	}
 	
+	public List<Order> getOrdiniDaEvadere(){
+		List<Order> temp = new ArrayList<Order>();
+		List<Order> temp2 = this.orderFacade.findAllOrderNotEvavaded();
+		for(Order o: temp2){
+			if((o.getDataChiusuraOrdine()!=null)&&(o.getDataEvasioneOrdine()==null))
+				temp.add(o);
+		}
+		return temp;
+	}
+	
+	public String dettagli (Order order){
+		this.order = order;
+		return "order"; //order.xhtml
+	}
 	
 	
 	
