@@ -71,7 +71,10 @@ public class ProductController {
 		return "login"; //login.xhtml
 	}
 	
-	
+	//>>NEW<<
+	public List<Provider> getMyProvider(){
+		return this.prodotto.getFornitori();
+	}
 	
 	
 	
