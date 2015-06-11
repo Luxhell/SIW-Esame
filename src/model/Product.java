@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name="product")
 @NamedQueries({
     @NamedQuery(name="Product.findProduct", query="SELECT p FROM Product p WHERE p.id = :id"),
-    @NamedQuery(name="Product.findAllProduct", query="SELECT p FROM Product p")
+    @NamedQuery(name="Product.findAllProduct", query="SELECT p FROM Product p"),
 }) 
 public class Product {
 

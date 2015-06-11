@@ -24,6 +24,8 @@ import javax.persistence.OneToOne;
 	
 	@NamedQuery(name = "Provider.findProviderByEmail", query = "SELECT p FROM Provider p WHERE p.email = :email"),
 	@NamedQuery(name = "Provider.findProviderByPartitaIVA", query = "SELECT p FROM Provider p WHERE p.partitaIVA = :partitaIVA"),
+	
+	@NamedQuery(name = "Provider.findMyProvider", query = "SELECT p1 FROM Provider p1 LEFT OUTER JOIN Product p2 ON p1.prodotti = :id")
 	})
 public class Provider {
 	

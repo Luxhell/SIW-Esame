@@ -86,7 +86,9 @@ public class ProviderController {
 	}
 	
 	
-	
+	public List<Provider> getProviderOfProduct(Product product){
+		return this.providerFacade.getProductProvider(product);
+	}
 	
 	
 	

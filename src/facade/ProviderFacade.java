@@ -111,5 +111,15 @@ public class ProviderFacade {
 			return null;
 		}
 	}
+	
+	public List<Provider> getProductProvider(Product product){
+		try {
+			TypedQuery<Provider> query = this.em.createNamedQuery("Provider.findMyProvider", Provider.class);
+			query.setParameter("id", product.getId());
+			return query.getResultList();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 
 }
