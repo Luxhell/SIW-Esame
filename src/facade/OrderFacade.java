@@ -52,14 +52,9 @@ public class OrderFacade {
         return this.em.createNamedQuery("Order.findAllOrder", Order.class).getResultList();
 	}
 
-    private void deleteOrder(Order order) {
+    public void deleteOrder(Order order) {
         em.remove(order);
     }
-
-	public void deleteOrder(Long id) {
-		Order order = getOrder(id);
-        deleteOrder(order);
-	}
 	
 	public List<Order> getOrder2Customer(Long id){
 		TypedQuery<Order> query = this.em.createNamedQuery("Order.findOrders2Customer", Order.class);
@@ -91,6 +86,12 @@ public class OrderFacade {
 
 	public List<Order> findAllOrderNotEvavaded() {
 		 return this.em.createNamedQuery("Order.findAllOrderNotEvavaded", Order.class).getResultList();
+	}
+
+	//nuovo
+	public void evadiOrdine(Order order) {
+		order.setDataEvasioneOrdine(new Date());
+		this.em.merge(order);
 	}
 	
 }
