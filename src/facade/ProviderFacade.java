@@ -112,7 +112,7 @@ public class ProviderFacade {
 		}
 	}
 	
-	public List<Provider> getProductProvider(Product product){
+/*	public List<Provider> getProductProvider(Product product){
 		try {
 			TypedQuery<Provider> query = this.em.createNamedQuery("Provider.findMyProvider", Provider.class);
 			query.setParameter("id", product.getId());
@@ -120,6 +120,6 @@ public class ProviderFacade {
 		} catch (NoResultException e) {
 			return null;
 		}
-	}
+	}*/
 
 }

@@ -34,7 +34,7 @@ public class OrderController {
 	
 	public String createOrder(){
 		this.order = orderFacade.createOrder(customer);
-		return "order"; //pagina: order.xhtml
+		return "/portaleAdmin/order.xhtml"; //pagina: order.xhtml
 	}
 	
 	public List<Order> getAll(){
@@ -61,9 +61,10 @@ public class OrderController {
 		return temp;
 	}
 	
+	//FORSE POSSO ELIMINARLO (DA PROVARE)
 	public String dettagli (Order order){
 		this.order = order;
-		return "order"; //order.xhtml
+		return "/portaleAdmin/order.xhtml"; //order.xhtml
 	}
 	
 	

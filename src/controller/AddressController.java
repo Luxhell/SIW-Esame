@@ -36,6 +36,17 @@ public class AddressController {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//INIZIO METODI GET E SET
 	
 	public String getVia() {
@@ -93,7 +104,6 @@ public class AddressController {
 	public void setAddressFacade(AddressFacade addressFacade) {
 		this.addressFacade = addressFacade;
 	}
-	
 	
 	//FINE METODI GET E SET
 

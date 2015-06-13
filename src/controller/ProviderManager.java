@@ -13,7 +13,7 @@ public class ProviderManager {
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.invalidateSession();
-		return "logout"; // index.xhtml
+		return "/logout.xhtml?faces-redirect=true";
 		
 	}
 
@@ -26,6 +26,13 @@ public class ProviderManager {
 	}
 	
 
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

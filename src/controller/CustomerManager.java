@@ -16,7 +16,7 @@ public class CustomerManager {
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext()
 				.invalidateSession();
-		return "logout"; // logout.xhtml
+		return "/logout.xhtml?faces-redirect=true"; // logout.xhtml
 	}
 
 	public void login(Customer c) {

@@ -64,7 +64,7 @@ public class CustomerController {
 
 		this.customer = customerFacade.createCustomer(nome, cognome, email.toLowerCase(),
 				dataNascita, indirizzo, password, isAdmin, dataRegistrazione);
-		return "customer"; // pagina: provider.xhtml
+		return "/portaleAdmin/customer.xhtml";
 	}
 
 	public String createAdmin() {
@@ -79,18 +79,18 @@ public class CustomerController {
 
 		this.customer = customerFacade.createCustomer(nome, cognome, email.toLowerCase(),
 				dataNascita, indirizzo, password, isAdmin, dataRegistrazione);
-		return "customer"; // pagina: provider.xhtml
+		return "/admin.xhtml";
 	}
 
 	public String login() {
 		Customer c = this.customerFacade.getCustomer(email.toLowerCase(), password);
 		if (c == null)
-			return "loginErr"; // loginErr.xhtml;
+			return "/loginErr.xhtml"; // loginErr.xhtml;
 		else {
 			this.session.login(c);
 			if (this.session.isAdmin())
-				return "index_admin"; // index_admin.xhtml
-			return "index_customer"; // index_customer.xhtml
+				return "/portaleAdmin/index.xhtml?faces-redirect=true"; // index_admin.xhtml
+			return "/portaleCustomer/index.xhtml?faces-redirect=true"; // index_customer.xhtml
 		}
 	}
 
@@ -117,12 +117,12 @@ public class CustomerController {
 	
 	public String visualizzaProdotti(){
 		this.session.nuovoOrdine(this.orderFacade.createOrder(this.session.getCurrent()));
-		return "products_customer"; //products_customer.xhtml
+		return "/portaleCustomer/products.xhtml"; //products_customer.xhtml
 	}
 	
 	public String confermaAcquisto(){
 		this.orderFacade.chiudiOrdine(this.session.getOrdineCorrente());
-		return "oraPaga"; //oraPaga.xhtml
+		return "/portaleCustomer/oraPaga.xhtml"; //oraPaga.xhtml
 	}
 	
 

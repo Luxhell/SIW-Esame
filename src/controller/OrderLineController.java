@@ -27,6 +27,7 @@ public class OrderLineController {
 		
 	}
 	
+	//FORSE SI PUO' ELIMINARE
 	public String createOrder(){
 		this.orderLine = orderLineFacade.createOrderLine(prezzoUnitario, quantita, ordine, prodotto);
 		return "orderLine"; //pagina: orderLine.xhtml

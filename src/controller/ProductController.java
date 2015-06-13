@@ -37,25 +37,16 @@ public class ProductController {
 		
 	}
 	
-	public String createProductAdmin(){
-		if(this.session2.isLogged()){
-			//DEBUG
+	public String createProductAdmin(){		
 			if(fornitore == null)
 				return "Non ho assegnato il fornitore dal menù a tendina";
 			this.prodotto = prodottoFacade.createProduct(nome, codice, descrizione, prezzo, quantita, fornitore);
-			return "product"; //pagina: product.xhtml
-		}else{
-			return "login_admin"; //pagina: login_admin.xhtml
-		}
+			return "/portaleAdmin/product.xhtml"; //pagina: product.xhtml
 	}
 	
 	public String createProductProvider(){
-		if(this.session.isLogged()){
 			this.prodotto = prodottoFacade.createProduct(nome, codice, descrizione, prezzo, quantita, this.session.getCurrent());
-			return "product"; //pagina: product.xhtml
-		}else{
-			return "login_provider"; //pagina: login_provider.xhtml
-		}
+			return "/portaleProvider/product.xhtml"; //pagina: product.xhtml
 	}
 	
 	public List<Product> getAll(){
@@ -66,16 +57,26 @@ public class ProductController {
 		this.prodotto = prodotto;
 		return "product"; //product.xhtml
 	}
+
+// QUANDO DARA' ERRORE BISOGNERA' SISTEMARLA ... MA NON COSI'
+//	public String goLogin(){
+//		return "login"; //login.xhtml
+//	}
 	
-	public String goLogin(){
-		return "login"; //login.xhtml
-	}
-	
-	//>>NEW<<
 	public List<Provider> getMyProvider(Product prodotto){
 		this.prodotto = prodotto;
 		return this.prodotto.getFornitori();
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

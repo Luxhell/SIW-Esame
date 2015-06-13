@@ -48,19 +48,18 @@ public class ProviderController {
 		this.indirizzo.setCap(cap);
 		this.indirizzo.setRegione(regione);
 		this.provider = providerFacade.createProvider(partitaIVA.toLowerCase(), telefono, email.toLowerCase(), indirizzo);
-		return "provider"; //pagina: provider.xhtml
+		return "/portaleAdmin/provider.xhtml"; //pagina: provider.xhtml
 	}
 	
 	public List<Product> getAllMyProducts(){
     	return this.session.getCurrent().getProdotti();
     }
     
-	//SECONDO ME IL PROVIDER NON VIENE SALVATO QUI
     public List<Product> getAllProducts(){
     		return this.provider.getProdotti();
     }	
-    //SECONDO ME NON RICORDA CHI SIA IL PROVIDER E LO METTE A NULL
-	public String dettagli(Provider provider){
+    
+    public String dettagli(Provider provider){
 		this.provider = provider;
 		return "provider";
 	}
@@ -68,10 +67,10 @@ public class ProviderController {
 	public String login(){
     	Provider p = this.providerFacade.getProvider(partitaIVA.toLowerCase(), email.toLowerCase());
     	if(p==null)
-    		return "loginProviderErr"; //loginProviderErr.xhtml;
+    		return "/loginProviderErr.xhtml"; //loginProviderErr.xhtml;
     	else{
     		this.session.login(p);
-    		return "index_provider"; //index_customer.xhtml
+    		return "/portaleProvider/index.xhtml?faces-redirect=true"; //index_provider.xhtml
     	}	
     }
 	
@@ -80,15 +79,12 @@ public class ProviderController {
 	}
 	
 	
-	//metodo aggiunto per test
-	public String goIndex(){
-		return "index"; //index.xhtml
-	}
 	
 	
-	public List<Provider> getProviderOfProduct(Product product){
-		return this.providerFacade.getProductProvider(product);
-	}
+	
+	
+	
+	
 	
 	
 	

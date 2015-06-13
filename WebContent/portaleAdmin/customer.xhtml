@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<title>Cliente</title>
+</h:head>
+<h:body>
+
+	<div>Nome: ${customerController.customer.nome}</div>
+	<div>Cognome: ${customerController.customer.cognome}</div>
+	<div>Email: ${customerController.customer.email}</div>
+	<div>Password: ${customerController.customer.password}</div>
+	<div>Data di Nascita: ${customerController.customer.dataNascita}</div>
+	<div>
+		Data di Registrazione:
+		<h:outputText
+			value="${customerController.customer.dataRegistrazione}">
+			<f:convertDateTime pattern="dd/MM/yyy" ptimeZone="EST" type="time" />
+		</h:outputText>
+	</div>
+	<div>Indirizzo: ${customerController.customer.indirizzo}</div>
+	<div>Indirizzo</div>
+	<div>Via: ${customerController.customer.indirizzo.via}</div>
+	<div>Città : ${customerController.customer.indirizzo.citta}</div>
+	<div>Stato: ${customerController.customer.indirizzo.stato}</div>
+	<div>CAP: ${customerController.customer.indirizzo.cap}</div>
+	<div>Regione: ${customerController.customer.indirizzo.regione}</div>
+
+</h:body>
+</html>
