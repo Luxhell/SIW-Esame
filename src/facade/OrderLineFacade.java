@@ -3,15 +3,11 @@ package facade;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import model.Order;
 import model.OrderLine;
 import model.Product;
-
-import java.util.Date;
 import java.util.List;
 
 @Stateless

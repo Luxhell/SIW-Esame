@@ -67,17 +67,14 @@ public class OrderController {
 		return "/portaleAdmin/order.xhtml"; //order.xhtml
 	}
 	
-	
-	//nuovo
 	public String evadiOrdine(Order order){
 		this.orderFacade.evadiOrdine(order);
-		return "qualcosa";		//	==> da mettere la pagina xhtml di output ;)
+		return "ordineEvaso.xhtml";
 	}
 	
-	//nuovo
 	public String cancellaOrdine(Order order){
 		this.orderFacade.deleteOrder(order);
-		return "staceppa";		// ==> modifica pure qua l' output :D
+		return "ordineAnnullato.xhtml";
 	}
 	
 	

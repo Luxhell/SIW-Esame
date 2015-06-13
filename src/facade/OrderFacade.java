@@ -10,7 +10,6 @@ import model.Customer;
 import model.Order;
 import model.OrderLine;
 import model.Product;
-import facade.OrderLineFacade;
 
 import java.util.Date;
 import java.util.List;

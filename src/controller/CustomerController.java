@@ -1,16 +1,13 @@
 package controller;
 
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import model.Address;
 import model.Customer;
-import model.Order;
 import model.OrderLine;
 import model.Product;
 import facade.CustomerFacade;
@@ -111,7 +108,6 @@ public class CustomerController {
 	}
 	
 	public List<OrderLine> visualizzaCarrello(){
-		//Order ordineCorrente = this.session.getCurrent().getOrdini().get(0);
 		return this.session.getOrdineCorrente().getLineeDiOrdine();
 	}
 	
