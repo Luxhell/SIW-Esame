@@ -52,7 +52,8 @@ public class OrderFacade {
 	}
 
     public void deleteOrder(Order order) {
-        em.remove(order);
+    	this.em.merge(order);
+        this.em.remove(order);
     }
 	
 	public List<Order> getOrder2Customer(Long id){
