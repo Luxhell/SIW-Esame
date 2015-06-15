@@ -26,7 +26,6 @@ public class ProductFacade {
 
 	}
     
-	//  >>UP<<
 	public Product createProduct(String name, String code, String description, Float price, Float qty, Provider prov) {
 		Product product = new Product();
 		product.setNome(name);
@@ -53,27 +52,12 @@ public class ProductFacade {
 		return this.em.createNamedQuery("Product.findAllProduct", Product.class).getResultList();
 		
 	}
-
-/*    public void deleteProduct(Product product) {
-    	product =  this.em.merge(product);
-    	this.em.remove(product);
-    }
-
-	public void deleteProduct(Long id) {
-        Product product = getProduct(id);
-        deleteProduct(product);
-	}*/
 	
 	public List<Provider> getFornitori(Long id){
 		Product product = getProduct(id);
 		return product.getFornitori();
 	}
 	
-	public void prelevaProdotto(Product product, Integer qty){
-		product.setQuantita(product.getQuantita() - qty);
-		if(product.getQuantita()==0)
-			product.setDisponibilita("no");
-		this.em.merge(product);
-	}
+
 	
 }

@@ -64,10 +64,6 @@ public class ProductController {
 		this.prodotto = prodotto;
 		return this.prodotto.getFornitori();
 	}
-
-/*	public void cancellaProdotto(Product prodotto){
-		this.prodottoFacade.deleteProduct(prodotto);
-	}*/
 	
 	
 	

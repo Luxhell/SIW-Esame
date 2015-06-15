@@ -79,6 +79,10 @@ public class OrderFacade {
 	}
 	
 	public void chiudiOrdine(Order order){
+		order = this.em.merge(order);
+		for(OrderLine o : order.getLineeDiOrdine()) {
+			prelevaProdotto(o.getProduct(), o.getQuantita());
+		}
 		order.setDataChiusuraOrdine(new Date());
 		this.em.merge(order);
 	}
@@ -90,6 +94,14 @@ public class OrderFacade {
 	public void evadiOrdine(Order order) {
 		order.setDataEvasioneOrdine(new Date());
 		this.em.merge(order);
+	}
+	
+	private void prelevaProdotto(Product product, Integer qty){
+		product = this.em.merge(product);
+		product.setQuantita(product.getQuantita() - qty);
+		if(product.getQuantita()==0)
+			product.setDisponibilita("no");
+		this.em.merge(product);	
 	}
 	
 }

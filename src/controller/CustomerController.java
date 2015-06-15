@@ -98,15 +98,13 @@ public class CustomerController {
 		}
 	}
 
-	// UP
 	public void aggiungiAlCarrello(Product product) {
-		if (product.isDisponibile()) {												//vedo prima se è disponibile il prodotto
-			if (this.orderLineFacade.getOrderLineProductOrder(
-					this.session.getOrdineCorrente(), product) != null) {
+		if (product.isDisponibile()) {		//vedo prima se è disponibile il prodotto
+			if (this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente(), product) != null) {
 				OrderLine OrderLineTemp = this.orderLineFacade
 						.getOrderLineProductOrder(
 								this.session.getOrdineCorrente(), product);
-				if (OrderLineTemp.getQuantita() < product.getQuantita())			//se la quantita che ho nel carrello è minore della quantita in magazzino procedo
+				if (OrderLineTemp.getQuantita() < product.getQuantita())	//se la quantita che ho nel carrello è minore della quantita in magazzino procedo
 					this.orderLineFacade.aggiornaQuantita(OrderLineTemp,
 							(OrderLineTemp.getQuantita()) + 1);
 			} else
@@ -134,9 +132,8 @@ public class CustomerController {
 	}
 
 	public String confermaAcquisto() {
+//		return Integer.toString(this.session.getOrdineCorrente().getLineeDiOrdine().size());
 		this.orderFacade.chiudiOrdine(this.session.getOrdineCorrente());
-		for(OrderLine o : this.session.getOrdineCorrente().getLineeDiOrdine())
-			this.productFacade.prelevaProdotto(o.getProduct(), o.getQuantita());
 		return "/portaleCustomer/oraPaga.xhtml"; // oraPaga.xhtml
 	}
 
