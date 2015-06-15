@@ -13,6 +13,7 @@
 			<tr>
 				<th>Nome</th>
 				<th>Prezzo</th>
+				<th>Disponibilita</th>
 			</tr>
 			<c:forEach var="prodotto" items="#{productController.getAll()}">
 				<tr>
@@ -20,6 +21,7 @@
 							action="#{productController.dettagli(prodotto)}"
 							value="#{prodotto.nome}"></h:commandLink></td>
 					<td>${prodotto.prezzo}</td>
+					<td>${prodotto.disponibilita}</td>
 				</tr>
 			</c:forEach>
 		</table>

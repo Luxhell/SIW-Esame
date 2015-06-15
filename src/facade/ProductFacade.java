@@ -5,8 +5,10 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
 import model.Product;
 import model.Provider;
+
 import java.util.List;
 
 @Stateless
@@ -24,6 +26,7 @@ public class ProductFacade {
 
 	}
     
+	//  >>UP<<
 	public Product createProduct(String name, String code, String description, Float price, Float qty, Provider prov) {
 		Product product = new Product();
 		product.setNome(name);
@@ -31,6 +34,7 @@ public class ProductFacade {
 		product.setDescrizione(description);
 		product.setPrezzo(price);
 		product.setQuantita(qty);
+		product.setDisponibilita("si");
 		this.em.persist(product);
 		product.addFornitore(prov);
 		prov.addProdotto(product);
@@ -50,10 +54,6 @@ public class ProductFacade {
 		
 	}
 
-	public void updateProduct(Product product) {
-        em.merge(product);
-	}
-	
 /*    public void deleteProduct(Product product) {
     	product =  this.em.merge(product);
     	this.em.remove(product);
@@ -68,4 +68,12 @@ public class ProductFacade {
 		Product product = getProduct(id);
 		return product.getFornitori();
 	}
+	
+	public void prelevaProdotto(Product product, Integer qty){
+		product.setQuantita(product.getQuantita() - qty);
+		if(product.getQuantita()==0)
+			product.setDisponibilita("no");
+		this.em.merge(product);
+	}
+	
 }

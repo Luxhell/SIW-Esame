@@ -13,6 +13,7 @@
 		<tr>
 			<th>Nome</th>
 			<th>Prezzo</th>
+			<th>Disponibilita</th>
 			<th>Aggiungi al carrello</th>
 		</tr>
 		<c:forEach var="prodotto" items="#{productController.getAll()}">
@@ -22,6 +23,7 @@
 							value="#{prodotto.nome}" />
 					</h:form></td>
 				<td>${prodotto.prezzo}</td>
+				<td>${prodotto.disponibilita}</td>
 				<td><h:form>
 						<h:commandLink
 							action="#{customerController.aggiungiAlCarrello(prodotto)}"

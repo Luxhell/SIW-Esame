@@ -1,11 +1,12 @@
 package controller;
 
-
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import model.Address;
 import model.Customer;
 import model.OrderLine;
@@ -13,6 +14,7 @@ import model.Product;
 import facade.CustomerFacade;
 import facade.OrderFacade;
 import facade.OrderLineFacade;
+import facade.ProductFacade;
 
 @ManagedBean(name = "customerController")
 public class CustomerController {
@@ -30,17 +32,19 @@ public class CustomerController {
 	private String cap;
 	private String regione;
 
-	private Customer customer;	
-	
+	private Customer customer;
 
 	@EJB
 	private CustomerFacade customerFacade;
-	
+
 	@EJB
 	private OrderFacade orderFacade;
-	
+
 	@EJB
 	private OrderLineFacade orderLineFacade;
+
+	@EJB
+	private ProductFacade productFacade;
 
 	@ManagedProperty(value = "#{customerManager}")
 	private CustomerManager session;
@@ -59,8 +63,9 @@ public class CustomerController {
 		this.isAdmin = false;
 		this.dataRegistrazione = new Date();
 
-		this.customer = customerFacade.createCustomer(nome, cognome, email.toLowerCase(),
-				dataNascita, indirizzo, password, isAdmin, dataRegistrazione);
+		this.customer = customerFacade.createCustomer(nome, cognome,
+				email.toLowerCase(), dataNascita, indirizzo, password, isAdmin,
+				dataRegistrazione);
 		return "/portaleAdmin/customer.xhtml";
 	}
 
@@ -74,13 +79,15 @@ public class CustomerController {
 		this.isAdmin = true;
 		this.dataRegistrazione = new Date();
 
-		this.customer = customerFacade.createCustomer(nome, cognome, email.toLowerCase(),
-				dataNascita, indirizzo, password, isAdmin, dataRegistrazione);
+		this.customer = customerFacade.createCustomer(nome, cognome,
+				email.toLowerCase(), dataNascita, indirizzo, password, isAdmin,
+				dataRegistrazione);
 		return "/admin.xhtml";
 	}
 
 	public String login() {
-		Customer c = this.customerFacade.getCustomer(email.toLowerCase(), password);
+		Customer c = this.customerFacade.getCustomer(email.toLowerCase(),
+				password);
 		if (c == null)
 			return "/loginErr.xhtml"; // loginErr.xhtml;
 		else {
@@ -91,48 +98,47 @@ public class CustomerController {
 		}
 	}
 
-	public void aggiungiAlCarrello(Product product){
-		// metodo per vedere se esiste già quel prodotto nell ordine
-		if(this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente(), product) != null){
-			OrderLine OrderLineTemp = this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente(), product);
-			this.orderLineFacade.aggiornaQuantita(OrderLineTemp, (OrderLineTemp.getQuantita())+1);
-		}else
-    		this.orderLineFacade.createOrderLine(product.getPrezzo(), 1, this.session.getOrdineCorrente(), product);
-    }
-	
-	public void eliminaDalCarrello(OrderLine rigaOrdine){
-		if(rigaOrdine.getQuantita()<=1)
+	// UP
+	public void aggiungiAlCarrello(Product product) {
+		if (product.isDisponibile()) {												//vedo prima se è disponibile il prodotto
+			if (this.orderLineFacade.getOrderLineProductOrder(
+					this.session.getOrdineCorrente(), product) != null) {
+				OrderLine OrderLineTemp = this.orderLineFacade
+						.getOrderLineProductOrder(
+								this.session.getOrdineCorrente(), product);
+				if (OrderLineTemp.getQuantita() < product.getQuantita())			//se la quantita che ho nel carrello è minore della quantita in magazzino procedo
+					this.orderLineFacade.aggiornaQuantita(OrderLineTemp,
+							(OrderLineTemp.getQuantita()) + 1);
+			} else
+				this.orderLineFacade.createOrderLine(product.getPrezzo(), 1,
+						this.session.getOrdineCorrente(), product);
+		}
+	}
+
+	public void eliminaDalCarrello(OrderLine rigaOrdine) {
+		if (rigaOrdine.getQuantita() <= 1)
 			this.orderLineFacade.deleteOrderLine(rigaOrdine);
 		else
-			this.orderLineFacade.aggiornaQuantita(rigaOrdine, rigaOrdine.getQuantita() -1);
+			this.orderLineFacade.aggiornaQuantita(rigaOrdine,
+					rigaOrdine.getQuantita() - 1);
 	}
-	
-	public List<OrderLine> visualizzaCarrello(){
+
+	public List<OrderLine> visualizzaCarrello() {
 		return this.session.getOrdineCorrente().getLineeDiOrdine();
 	}
-	
-	public String visualizzaProdotti(){
-		this.session.nuovoOrdine(this.orderFacade.createOrder(this.session.getCurrent()));
-		return "/portaleCustomer/products.xhtml"; //products_customer.xhtml
-	}
-	
-	public String confermaAcquisto(){
-		this.orderFacade.chiudiOrdine(this.session.getOrdineCorrente());
-		return "/portaleCustomer/oraPaga.xhtml"; //oraPaga.xhtml
-	}
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public String visualizzaProdotti() {
+		this.session.nuovoOrdine(this.orderFacade.createOrder(this.session
+				.getCurrent()));
+		return "/portaleCustomer/products.xhtml"; // products_customer.xhtml
+	}
+
+	public String confermaAcquisto() {
+		this.orderFacade.chiudiOrdine(this.session.getOrdineCorrente());
+		for(OrderLine o : this.session.getOrdineCorrente().getLineeDiOrdine())
+			this.productFacade.prelevaProdotto(o.getProduct(), o.getQuantita());
+		return "/portaleCustomer/oraPaga.xhtml"; // oraPaga.xhtml
+	}
 
 	// INIZIO METODI GET E SET
 
@@ -255,7 +261,6 @@ public class CustomerController {
 	public void setOrderFacade(OrderFacade orderFacade) {
 		this.orderFacade = orderFacade;
 	}
-	
 
 	// FINE METODI GET E SET
 
