@@ -13,7 +13,6 @@
 			<th>Nome Prodotto</th>
 			<th>Prezzo</th>
 			<th>Quantità</th>
-			<th>Cancella il prodotto</th>
 		</tr>
 		<c:forEach var="prodotto"
 			items="#{providerController.getAllMyProducts()}">
@@ -24,11 +23,11 @@
 					</h:form></td>
 				<td>${prodotto.prezzo}</td>
 				<td>${prodotto.quantita}</td>
-				<td><h:form>
-						<h:commandLink
-							action="#{productController.cancellaProdotto(prodotto)}"
-							value="Cancella" />
-					</h:form></td>
+<!-- 				<td><h:form> -->
+<!-- 						<h:commandLink -->
+<!-- 							action="#{productController.cancellaProdotto(prodotto)}" -->
+<!-- 							value="Cancella" /> -->
+<!-- 					</h:form></td> -->
 			</tr>
 		</c:forEach>
 	</table>

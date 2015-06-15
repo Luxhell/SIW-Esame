@@ -65,10 +65,9 @@ public class ProductController {
 		return this.prodotto.getFornitori();
 	}
 
-	public void cancellaProdotto(Product prodotto){
+/*	public void cancellaProdotto(Product prodotto){
 		this.prodottoFacade.deleteProduct(prodotto);
-		//return "allMyProducts.xhtml";
-	}
+	}*/
 	
 	
 	

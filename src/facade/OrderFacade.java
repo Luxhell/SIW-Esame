@@ -87,7 +87,6 @@ public class OrderFacade {
 		 return this.em.createNamedQuery("Order.findAllOrderNotEvavaded", Order.class).getResultList();
 	}
 
-	//nuovo
 	public void evadiOrdine(Order order) {
 		order.setDataEvasioneOrdine(new Date());
 		this.em.merge(order);
