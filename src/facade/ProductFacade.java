@@ -54,8 +54,9 @@ public class ProductFacade {
         em.merge(product);
 	}
 	
-    private void deleteProduct(Product product) {
-        em.remove(product);
+    public void deleteProduct(Product product) {
+    	product =  this.em.merge(product);
+    	this.em.remove(product);
     }
 
 	public void deleteProduct(Long id) {

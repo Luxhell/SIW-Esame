@@ -2,9 +2,11 @@ package controller;
 
 
 import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+
 import model.Product;
 import model.Provider;
 import facade.ProductFacade;
@@ -55,19 +57,21 @@ public class ProductController {
 		
 	public String dettagli(Product prodotto){
 		this.prodotto = prodotto;
-		return "product"; //product.xhtml
+		return "product.xhtml"; //product.xhtml
 	}
-
-// QUANDO DARA' ERRORE BISOGNERA' SISTEMARLA ... MA NON COSI'
-//	public String goLogin(){
-//		return "login"; //login.xhtml
-//	}
 	
 	public List<Provider> getMyProvider(Product prodotto){
 		this.prodotto = prodotto;
 		return this.prodotto.getFornitori();
 	}
 
+	public void cancellaProdotto(Product prodotto){
+		this.prodottoFacade.deleteProduct(prodotto);
+		//return "allMyProducts.xhtml";
+	}
+	
+	
+	
 	
 	
 	

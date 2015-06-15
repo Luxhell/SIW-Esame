@@ -61,7 +61,7 @@ public class ProviderController {
     
     public String dettagli(Provider provider){
 		this.provider = provider;
-		return "provider";
+		return "provider.xhtml";
 	}
 	
 	public String login(){
@@ -77,8 +77,6 @@ public class ProviderController {
 	public List<Provider> getAll(){
 		return providerFacade.getAll();
 	}
-	
-	
 	
 	
 	

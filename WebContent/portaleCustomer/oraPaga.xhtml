@@ -7,6 +7,27 @@
 <title>Vogliamo i soldi</title>
 </h:head>
 <h:body>
-	<h1> <STRONG><EM>DACCI LI SORDI!!!!!!</EM></STRONG></h1>
+	<h1> <STRONG><EM>DACCE LI SORDI!!!!!!</EM></STRONG></h1>
+	
+	<h:outputScript>
+	//<![CDATA[ 
+		var count = 3;
+
+		var counter = setInterval(timer, 1000);
+
+		function timer() {
+			count--;
+			if (count <= 0) {
+				clearInterval(counter);
+				location.href = "index.xhtml";
+				return;
+			}
+			document.getElementById("timer").innerHTML=count;
+		}
+		  //]]>
+	</h:outputScript>
+
+Sarai reindirizzato in <span id="timer" >3</span> secondi
+	
 </h:body>
 </html>

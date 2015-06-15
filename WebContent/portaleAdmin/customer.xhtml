@@ -28,5 +28,24 @@
 	<div>CAP: ${customerController.customer.indirizzo.cap}</div>
 	<div>Regione: ${customerController.customer.indirizzo.regione}</div>
 
+<h:outputScript>
+	//<![CDATA[ 
+		var count = 8;
+
+		var counter = setInterval(timer, 1000);
+
+		function timer() {
+			count--;
+			if (count <= 0) {
+				clearInterval(counter);
+				location.href = "index.xhtml";
+				return;
+			}
+			document.getElementById("timer").innerHTML=count;
+		}
+		  //]]>
+	</h:outputScript>
+
+Sarai reindirizzato in <span id="timer" >8</span> secondi
 </h:body>
 </html>

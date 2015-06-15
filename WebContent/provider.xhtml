@@ -22,7 +22,8 @@
 		Prodotti del fornitore:
 		
 <!-- QUI VI E' UN PROBLEMA -->
-<c:forEach var="product"
+
+		<c:forEach var="product"
 			items="#{providerController.getAllProducts()}">
 			<h:form>
 						<h:commandLink action="#{productController.dettagli(product)}"
@@ -31,7 +32,6 @@
 						</h:commandLink>
 					</h:form>
 		</c:forEach>
-		
 	</div>
 	
 	<h:outputScript>

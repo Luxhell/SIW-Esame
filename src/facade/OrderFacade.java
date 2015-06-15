@@ -29,7 +29,6 @@ public class OrderFacade {
 
 	}
     
-	//ERRORE NEL CREATE. IL PERSIST NON VA
 	public Order createOrder(Customer customer){
 		Order order = new Order();
 		order.setDataAperturaOrdine(new Date());
@@ -52,8 +51,8 @@ public class OrderFacade {
 	}
 
     public void deleteOrder(Order order) {
-    	this.em.merge(order);
-        this.em.remove(order);
+    	Order temp = getOrder(order.getId());
+        this.em.remove(temp);
     }
 	
 	public List<Order> getOrder2Customer(Long id){
