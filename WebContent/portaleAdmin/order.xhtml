@@ -16,7 +16,27 @@
 	<div>Id dell'Ordine: ${orderController.order.id}</div>
 	<div>Data Apertura Ordine: ${orderController.order.dataAperturaOrdine}</div>
 	<div>Data Chiusura Ordine: ${orderController.order.dataChiusuraOrdine}</div>
-	<div>Cliente che ha effettuato l'ordine: ${orderController.order.cliente.nome} ${orderController.order.cliente.cognome} ${orderController.order.cliente.email}</div>
+	<div>Cliente: ${orderController.order.cliente.nome} ${orderController.order.cliente.cognome}</div>
+	<div>Email del cliente: ${orderController.order.cliente.email}</div>
 	
+	<table>
+	<tr>
+				<th>Nome</th>
+				
+				<th>Quantità</th>
+				<th>Prezzo Unitario</th>
+			</tr>
+	<c:forEach var="riga"
+			items="#{orderController.order.lineeDiOrdine}">
+			<h:form>
+				<tr>
+					<td><h:commandLink value="${riga.prodotto.nome}" action="#{productController.dettagli(riga.prodotto)}"/></td>
+					<td>${riga.quantita}</td>
+					<td>${riga.prezzoUnitario}</td>
+				</tr>
+			</h:form>
+		</c:forEach>
+	</table>
+		
 </h:body>
 </html>

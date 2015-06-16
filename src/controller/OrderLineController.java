@@ -1,8 +1,12 @@
 package controller;
 
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+
 import model.Order;
 import model.OrderLine;
 import model.Product;
@@ -22,17 +26,45 @@ public class OrderLineController {
 	@EJB
 	private OrderLineFacade orderLineFacade;
 	
+	@ManagedProperty(value = "#{customerManager}")
+	private CustomerManager session;
 	
 	public OrderLineController(){
 		
 	}
 	
-	//FORSE SI PUO' ELIMINARE
-	public String createOrder(){
-		this.orderLine = orderLineFacade.createOrderLine(prezzoUnitario, quantita, ordine, prodotto);
-		return "orderLine"; //pagina: orderLine.xhtml
+	public List<OrderLine> visualizzaCarrello() {
+		return this.session.getOrdineCorrente().getLineeDiOrdine();
+	}
+	
+	public void eliminaDalCarrello(OrderLine rigaOrdine) {
+		if (rigaOrdine.getQuantita() <= 1)
+			this.orderLineFacade.deleteOrderLine(rigaOrdine);
+		else
+			this.orderLineFacade.aggiornaQuantita(rigaOrdine,
+					rigaOrdine.getQuantita() - 1);
+	}
+	
+	public String aggiungiAlCarrello(Product product) {
+		if (product.isDisponibile()) {		//vedo prima se è disponibile il prodotto
+			if (cercaProdotto(this.session.getOrdineCorrente(), product) != null) {
+				OrderLine orderLineTemp = cercaProdotto(this.session.getOrdineCorrente(), product);
+				if (orderLineTemp.getQuantita() < product.getQuantita())	//se la quantita che ho nel carrello è minore della quantita in magazzino procedo
+					this.orderLineFacade.aggiornaQuantita(orderLineTemp, (orderLineTemp.getQuantita()) + 1);
+			} else {
+				this.session.setOrdineCorrente(this.orderLineFacade.createOrderLine(product.getPrezzo(), 1, this.session.getOrdineCorrente(), product));
+			}
+		}
+		return "/portaleCustomer/products.xhtml";
 	}
 
+	private OrderLine cercaProdotto (Order order, Product product){
+		for(OrderLine ol :order.getLineeDiOrdine()){
+			if(ol.getProdotto().equals(product))
+				return ol;
+		}
+		return null;
+	}
 
 	
 	
@@ -88,6 +120,16 @@ public class OrderLineController {
 	public void setOrderLineFacade(OrderLineFacade orderLineFacade) {
 		this.orderLineFacade = orderLineFacade;
 	}
+
+	public CustomerManager getSession() {
+		return this.session;
+	}
+
+	public void setSession(CustomerManager session) {
+		this.session = session;
+	}
+	
+	
 	
 	//FINE METODI GET E SET
 

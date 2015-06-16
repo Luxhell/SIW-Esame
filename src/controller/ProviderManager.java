@@ -40,7 +40,9 @@ public class ProviderManager {
 	
 	public Provider getCurrent() {
 		return this.current;
-	}	
+	}
+	
+	
 	
 	//FINE METODI GET E SET
 

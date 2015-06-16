@@ -33,7 +33,6 @@ public class ProductFacade {
 		product.setDescrizione(description);
 		product.setPrezzo(price);
 		product.setQuantita(qty);
-		product.setDisponibilita("si");
 		this.em.persist(product);
 		product.addFornitore(prov);
 		prov.addProdotto(product);

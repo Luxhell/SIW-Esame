@@ -8,6 +8,7 @@ import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import model.Customer;
 import model.Order;
@@ -21,12 +22,13 @@ public class OrderController {
 	private Date dataChiusura;
 	private Date dataEvasione;
 	private Customer customer;
-	
 	private Order order;
 
 	@EJB
 	private OrderFacade orderFacade;
 	
+	@ManagedProperty(value = "#{customerManager}")
+	private CustomerManager session;
 	
 	public OrderController(){
 		
@@ -53,15 +55,13 @@ public class OrderController {
 	
 	public List<Order> getOrdiniDaEvadere(){
 		List<Order> temp = new ArrayList<Order>();
-		List<Order> temp2 = this.orderFacade.findAllOrderNotEvavaded();
-		for(Order o: temp2){
+		for(Order o: this.orderFacade.findAllOrderNotEvavaded()){
 			if((o.getDataChiusuraOrdine()!=null)&&(o.getDataEvasioneOrdine()==null))
 				temp.add(o);
 		}
 		return temp;
 	}
 	
-	//FORSE POSSO ELIMINARLO (DA PROVARE)
 	public String dettagli (Order order){
 		this.order = order;
 		return "/portaleAdmin/order.xhtml"; //order.xhtml
@@ -69,13 +69,25 @@ public class OrderController {
 	
 	public String evadiOrdine(Order order){
 		this.orderFacade.evadiOrdine(order);
-		return "ordineEvaso.xhtml";
+		return "/portaleAdmin/ordineEvaso.xhtml";
 	}
 	
 	public String cancellaOrdine(Order order){
 		this.orderFacade.deleteOrder(order);
-		return "ordineAnnullato.xhtml";
+		return "/portaleAdmin/ordineAnnullato.xhtml";
 	}
+	
+	public String confermaAcquisto() {
+//		return Integer.toString(this.session.getOrdineCorrente().getLineeDiOrdine().size());
+		this.orderFacade.chiudiOrdine(this.session.getOrdineCorrente());
+		return "/portaleCustomer/oraPaga.xhtml"; // oraPaga.xhtml
+	}
+	
+	public String visualizzaProdotti() {
+		this.session.setOrdineCorrente(this.orderFacade.createOrder(this.session.getCurrent()));
+		return "/portaleCustomer/products.xhtml";
+	}
+	
 	
 	
 	
@@ -130,6 +142,16 @@ public class OrderController {
 	public void setOrderFacade(OrderFacade orderFacade) {
 		this.orderFacade = orderFacade;
 	}
+
+	public CustomerManager getSession() {
+		return session;
+	}
+
+	public void setSession(CustomerManager session) {
+		this.session = session;
+	}
+	
+	
 	
 	//FINE METODI GET E SET
 

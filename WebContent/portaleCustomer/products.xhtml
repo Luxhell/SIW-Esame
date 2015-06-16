@@ -23,10 +23,10 @@
 							value="#{prodotto.nome}" />
 					</h:form></td>
 				<td>${prodotto.prezzo}</td>
-				<td>${prodotto.disponibilita}</td>
+				<td>${prodotto.isDisponibile()?'si':'no'}</td>
 				<td><h:form>
 						<h:commandLink
-							action="#{customerController.aggiungiAlCarrello(prodotto)}"
+							action="#{orderLineController.aggiungiAlCarrello(prodotto)}"
 							value="Aggiungi" ></h:commandLink>
 					</h:form></td>
 			</tr>
@@ -41,7 +41,7 @@
 
 	<h:form>
 		<h:commandButton value="Conferma acquisti"
-			action="#{customerController.confermaAcquisto}" />
+			action="#{orderController.confermaAcquisto}" />
 	</h:form>
 
 	<h:form>

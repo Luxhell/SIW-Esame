@@ -196,6 +196,8 @@ public class ProviderController {
 	public void setProdotto(Product prodotto) {
 		this.prodotto = prodotto;
 	}
+	
+	
 
 	//FINE METODI GET E SET
 

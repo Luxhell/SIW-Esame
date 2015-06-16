@@ -8,6 +8,10 @@
 </h:head>
 <h:body>
 
+	<div>
+		<a href="javascript:history.go(-1);">Back</a>
+	</div>
+
 	<h:form>
 		<table>
 			<tr>
@@ -21,7 +25,7 @@
 							action="#{productController.dettagli(prodotto)}"
 							value="#{prodotto.nome}"></h:commandLink></td>
 					<td>${prodotto.prezzo}</td>
-					<td>${prodotto.disponibilita}</td>
+					<td>${prodotto.isDisponibile()?'si':'no'}</td>
 				</tr>
 			</c:forEach>
 		</table>

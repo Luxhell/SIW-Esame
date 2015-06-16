@@ -8,6 +8,10 @@
 </h:head>
 <h:body>
 
+	<div>
+		<a href="javascript:history.go(-2);">Back</a>
+	</div>
+
 	<div>Partita IVA: ${providerController.provider.partitaIVA}</div>
 	<div>Email: ${providerController.provider.email}</div>
 	<div>Telefono: ${providerController.provider.telefono}</div>
@@ -21,7 +25,7 @@
 	<div>
 		Prodotti del fornitore:
 		
-<!-- QUI VI E' UN PROBLEMA -->
+<!-- QUI VI E' UN PROBLEMA getAllProducts da NullPointException-->
 <c:forEach var="product"
 			items="#{providerController.getAllProducts()}">
 			<h:form>
@@ -33,25 +37,6 @@
 		</c:forEach>
 		
 	</div>
-	
-	<h:outputScript>
-	//<![CDATA[ 
-		var count = 6;
 
-		var counter = setInterval(timer, 1000);
-
-		function timer() {
-			count--;
-			if (count <= 0) {
-				clearInterval(counter);
-				location.href = "index.xhtml";
-				return;
-			}
-			document.getElementById("timer").innerHTML=count;
-		}
-		  //]]>
-	</h:outputScript>
-
-Sarai reindirizzato in <span id="timer" >6</span> secondi
 </h:body>
 </html>

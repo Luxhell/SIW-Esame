@@ -1,20 +1,12 @@
 package controller;
 
 import java.util.Date;
-import java.util.List;
-
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-
 import model.Address;
 import model.Customer;
-import model.OrderLine;
-import model.Product;
 import facade.CustomerFacade;
-import facade.OrderFacade;
-import facade.OrderLineFacade;
-import facade.ProductFacade;
 
 @ManagedBean(name = "customerController")
 public class CustomerController {
@@ -31,20 +23,10 @@ public class CustomerController {
 	private String stato;
 	private String cap;
 	private String regione;
-
 	private Customer customer;
 
 	@EJB
 	private CustomerFacade customerFacade;
-
-	@EJB
-	private OrderFacade orderFacade;
-
-	@EJB
-	private OrderLineFacade orderLineFacade;
-
-	@EJB
-	private ProductFacade productFacade;
 
 	@ManagedProperty(value = "#{customerManager}")
 	private CustomerManager session;
@@ -78,7 +60,6 @@ public class CustomerController {
 		indirizzo.setRegione(regione);
 		this.isAdmin = true;
 		this.dataRegistrazione = new Date();
-
 		this.customer = customerFacade.createCustomer(nome, cognome,
 				email.toLowerCase(), dataNascita, indirizzo, password, isAdmin,
 				dataRegistrazione);
@@ -98,44 +79,14 @@ public class CustomerController {
 		}
 	}
 
-	public void aggiungiAlCarrello(Product product) {
-		if (product.isDisponibile()) {		//vedo prima se è disponibile il prodotto
-			if (this.orderLineFacade.getOrderLineProductOrder(this.session.getOrdineCorrente(), product) != null) {
-				OrderLine OrderLineTemp = this.orderLineFacade
-						.getOrderLineProductOrder(
-								this.session.getOrdineCorrente(), product);
-				if (OrderLineTemp.getQuantita() < product.getQuantita())	//se la quantita che ho nel carrello è minore della quantita in magazzino procedo
-					this.orderLineFacade.aggiornaQuantita(OrderLineTemp,
-							(OrderLineTemp.getQuantita()) + 1);
-			} else
-				this.orderLineFacade.createOrderLine(product.getPrezzo(), 1,
-						this.session.getOrdineCorrente(), product);
-		}
-	}
 
-	public void eliminaDalCarrello(OrderLine rigaOrdine) {
-		if (rigaOrdine.getQuantita() <= 1)
-			this.orderLineFacade.deleteOrderLine(rigaOrdine);
-		else
-			this.orderLineFacade.aggiornaQuantita(rigaOrdine,
-					rigaOrdine.getQuantita() - 1);
-	}
 
-	public List<OrderLine> visualizzaCarrello() {
-		return this.session.getOrdineCorrente().getLineeDiOrdine();
-	}
 
-	public String visualizzaProdotti() {
-		this.session.nuovoOrdine(this.orderFacade.createOrder(this.session
-				.getCurrent()));
-		return "/portaleCustomer/products.xhtml"; // products_customer.xhtml
-	}
 
-	public String confermaAcquisto() {
-//		return Integer.toString(this.session.getOrdineCorrente().getLineeDiOrdine().size());
-		this.orderFacade.chiudiOrdine(this.session.getOrdineCorrente());
-		return "/portaleCustomer/oraPaga.xhtml"; // oraPaga.xhtml
-	}
+
+
+	
+
 
 	// INIZIO METODI GET E SET
 
@@ -169,6 +120,10 @@ public class CustomerController {
 
 	public void setDataNascita(Date dataNascita) {
 		this.dataNascita = dataNascita;
+	}
+
+	public Date getDataRegistrazione() {
+		return dataRegistrazione;
 	}
 
 	public String getVia() {
@@ -251,13 +206,11 @@ public class CustomerController {
 		this.session = session;
 	}
 
-	public OrderFacade getOrderFacade() {
-		return orderFacade;
+	public void setDataRegistrazione(Date dataRegistrazione) {
+		this.dataRegistrazione = dataRegistrazione;
 	}
 
-	public void setOrderFacade(OrderFacade orderFacade) {
-		this.orderFacade = orderFacade;
-	}
+
 
 	// FINE METODI GET E SET
 

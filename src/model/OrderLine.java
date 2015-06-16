@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +18,6 @@ import javax.persistence.Table;
     @NamedQuery(name="OrderLine.findOrderLine", query="SELECT ol FROM OrderLine ol WHERE ol.id = :id"),
     @NamedQuery(name="OrderLine.findAllOrderLine", query="SELECT ol FROM OrderLine ol"),
     @NamedQuery(name="OrderLine.findOrderLine2Prodotto", query="SELECT ol FROM OrderLine ol WHERE ol.prodotto = :prodotto"),
-    @NamedQuery(name="OrderLine.findOrderLine2ProductOrder", query="SELECT ol FROM OrderLine ol WHERE ol.ordine = :order AND ol.prodotto = :product")
 })
 public class OrderLine {
 	
@@ -37,7 +35,7 @@ public class OrderLine {
 	@JoinColumn(name="ORDER_ID")
 	private Order ordine;
 	
-	@OneToOne (cascade = {CascadeType.PERSIST})
+	@ManyToOne (cascade = {CascadeType.PERSIST})
 	@JoinColumn(name="PRODUCT_ID")
 	private Product prodotto;
 	
@@ -86,11 +84,11 @@ public class OrderLine {
 		this.ordine = order;
 	}
 
-	public Product getProduct() {
+	public Product getProdotto() {
 		return this.prodotto;
 	}
 
-	public void setProduct(Product product) {
+	public void setProdotto(Product product) {
 		this.prodotto = product;
 	}
 	

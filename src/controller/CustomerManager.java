@@ -31,9 +31,7 @@ public class CustomerManager {
 		return (this.current != null);
 	}
 
-	public void nuovoOrdine(Order order){
-		this.ordineCorrente = order;
-	}
+
 	
 	public boolean ordineAperto(){
 		return (this.ordineCorrente!=null);
@@ -57,6 +55,15 @@ public class CustomerManager {
 	
 	public Order getOrdineCorrente(){
 		return this.ordineCorrente;
+	}
+	
+	public void setOrdineCorrente(Order order){
+		this.ordineCorrente = order;
+		
+	}
+	
+	public void setOrder(Order order){
+		this.ordineCorrente = order;
 	}
 	
 	//FINE METODI GET E SET

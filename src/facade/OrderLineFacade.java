@@ -25,16 +25,16 @@ public class OrderLineFacade {
 
 	}
     
-	public OrderLine createOrderLine(Float unitPrice, Integer quantity, Order order, Product product) {
+	public Order createOrderLine(Float unitPrice, Integer quantity, Order order, Product product) {
 		OrderLine orderLine = new OrderLine();
 		orderLine.setPrezzoUnitario(unitPrice);
 		orderLine.setQuantita(quantity);
 		orderLine.setOrder(order);
-		orderLine.setProduct(product);
+		orderLine.setProdotto(product);
 		order = this.em.merge(order);
 		this.em.persist(orderLine);
 		order.addLineaDiOrdine(orderLine);
-		return orderLine;
+		return order;
 		
 	}
 	
@@ -62,15 +62,6 @@ public class OrderLineFacade {
 		this.em.merge(ol);
 	}
 	
-	public OrderLine getOrderLineProductOrder(Order order, Product product) {
-		try{
-			TypedQuery<OrderLine> query = this.em.createNamedQuery("OrderLine.findOrderLine2ProductOrder", OrderLine.class);
-		    query.setParameter("order", order);
-		    query.setParameter("product", product);
-		    return query.getSingleResult();
-		} catch(Exception e){
-			return null;
-		}
-	}
+
 
 }

@@ -71,9 +71,9 @@ public class OrderFacade {
 
 	
 	public boolean checkProduct(Order order, Product product){
-		Long idProdotto = product.getId();
+		
 		for(OrderLine orderLine : order.getLineeDiOrdine())
-			if(orderLine.getProduct().getId() == (idProdotto))
+			if(orderLine.getProdotto().equals(product))
 				return true;
 		return false;
 	}
@@ -81,7 +81,7 @@ public class OrderFacade {
 	public void chiudiOrdine(Order order){
 		order = this.em.merge(order);
 		for(OrderLine o : order.getLineeDiOrdine()) {
-			prelevaProdotto(o.getProduct(), o.getQuantita());
+			prelevaProdotto(o.getProdotto(), o.getQuantita());
 		}
 		order.setDataChiusuraOrdine(new Date());
 		this.em.merge(order);
@@ -99,8 +99,6 @@ public class OrderFacade {
 	private void prelevaProdotto(Product product, Integer qty){
 		product = this.em.merge(product);
 		product.setQuantita(product.getQuantita() - qty);
-		if(product.getQuantita()==0)
-			product.setDisponibilita("no");
 		this.em.merge(product);	
 	}
 	

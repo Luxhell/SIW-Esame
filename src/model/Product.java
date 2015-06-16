@@ -31,9 +31,6 @@ public class Product {
 	@Column(nullable = false, length = 254)
 	private Float quantita;
 	
-	@Column(nullable = false)
-	private String disponibilita;  //>>NEW<<
-	
 	@ManyToMany(mappedBy="prodotti", cascade={CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER )
 	private List<Provider> fornitori;
 	
@@ -45,7 +42,10 @@ public class Product {
 		return this.fornitori.add(provider);
 	}
 	
-	
+
+	public boolean isDisponibile(){
+		return (this.getQuantita()>0);
+	}
 	
 	
 	
@@ -106,25 +106,12 @@ public class Product {
 	public void setFornitori(List<Provider> fornitori) {
 		this.fornitori = fornitori;
 	}
-
-	//>>NEW<<
-	public String getDisponibilita() {
-		return disponibilita;
-	}
-
-	//>>NEW<<
-	public void setDisponibilita(String disponibilita) {
-		this.disponibilita = disponibilita;
-	}
 	
 	
 
 	//FINE METODI GET E SET
 	
-	//>>NEW<<
-	public boolean isDisponibile(){
-		return this.getDisponibilita().equals("si");
-	}
+
 
 	@Override
 	public int hashCode() {

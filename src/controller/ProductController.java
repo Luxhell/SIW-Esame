@@ -40,7 +40,7 @@ public class ProductController {
 	}
 	
 	public String createProductAdmin(){		
-			if(fornitore == null)
+			if(this.fornitore == null)
 				return "Non ho assegnato il fornitore dal menù a tendina";
 			this.prodotto = prodottoFacade.createProduct(nome, codice, descrizione, prezzo, quantita, fornitore);
 			return "/portaleAdmin/product.xhtml"; //pagina: product.xhtml
@@ -64,9 +64,8 @@ public class ProductController {
 		this.prodotto = prodotto;
 		return this.prodotto.getFornitori();
 	}
-	
-	
-	
+
+
 	
 	
 	
@@ -160,6 +159,7 @@ public class ProductController {
 	public void setSession(ProviderManager session) {
 		this.session = session;
 	}
+	
 	
 
 	//FINE METODI GET E SET
