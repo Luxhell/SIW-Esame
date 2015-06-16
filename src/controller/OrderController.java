@@ -12,6 +12,7 @@ import javax.faces.bean.ManagedProperty;
 
 import model.Customer;
 import model.Order;
+import model.OrderLine;
 import facade.OrderFacade;
 
 @ManagedBean(name = "orderController")
@@ -73,10 +74,16 @@ public class OrderController {
 	}
 	
 	public String cancellaOrdine(Order order){
+		for(OrderLine ol: order.getLineeDiOrdine()){
+			if(ol != null)
+				this.orderFacade.riaggiungiProdottoAlDB(ol.getProdotto(), ol.getQuantita());
+		}
 		this.orderFacade.deleteOrder(order);
 		return "/portaleAdmin/ordineAnnullato.xhtml";
 	}
 	
+
+
 	public String confermaAcquisto() {
 //		return Integer.toString(this.session.getOrdineCorrente().getLineeDiOrdine().size());
 		this.orderFacade.chiudiOrdine(this.session.getOrdineCorrente());

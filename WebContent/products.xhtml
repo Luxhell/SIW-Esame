@@ -34,7 +34,7 @@
 						</h:commandLink>
 					</td>
 					<td>${prodotto.prezzo}</td>
-					<td>${prodotto.disponibilita}</td>
+					<td>${prodotto.isDisponibile()?'si':'no'}</td>
 				</tr>
 			</c:forEach>
 

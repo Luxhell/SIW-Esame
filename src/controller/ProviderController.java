@@ -56,13 +56,15 @@ public class ProviderController {
     }
     
     public List<Product> getAllProducts(){
-    		return this.provider.getProdotti();
+    	return this.session.getProviderTemp().getProdotti();
     }	
     
     public String dettagli(Provider provider){
+		this.session.setProviderTemp(provider);
 		this.provider = provider;
 		return "provider.xhtml";
 	}
+
 	
 	public String login(){
     	Provider p = this.providerFacade.getProvider(partitaIVA.toLowerCase(), email.toLowerCase());

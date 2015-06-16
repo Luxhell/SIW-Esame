@@ -9,6 +9,7 @@ import model.Provider;
 @SessionScoped
 public class ProviderManager {
 	private Provider current;
+	private Provider providerTemp;
 	
 	public String logout() {
 		FacesContext.getCurrentInstance().getExternalContext()
@@ -25,7 +26,7 @@ public class ProviderManager {
 		return (this.current != null);
 	}
 	
-
+	
 	
 	
 	
@@ -41,6 +42,15 @@ public class ProviderManager {
 	public Provider getCurrent() {
 		return this.current;
 	}
+
+	public Provider getProviderTemp() {
+		return providerTemp;
+	}
+
+	public void setProviderTemp(Provider providerTemp) {
+		this.providerTemp = providerTemp;
+	}
+	
 	
 	
 	

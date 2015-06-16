@@ -26,7 +26,7 @@
 		Prodotti del fornitore:
 		
 <!-- QUI VI E' UN PROBLEMA getAllProducts da NullPointException-->
-<c:forEach var="product"
+		<c:forEach var="product"
 			items="#{providerController.getAllProducts()}">
 			<h:form>
 						<h:commandLink action="#{productController.dettagli(product)}"

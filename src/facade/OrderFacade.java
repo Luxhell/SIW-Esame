@@ -101,5 +101,10 @@ public class OrderFacade {
 		product.setQuantita(product.getQuantita() - qty);
 		this.em.merge(product);	
 	}
+
+	public void riaggiungiProdottoAlDB(Product prodotto, Integer quantita) {
+		prodotto.setQuantita(prodotto.getQuantita()+quantita);
+		this.em.merge(prodotto);
+	}
 	
 }

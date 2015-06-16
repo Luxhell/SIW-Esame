@@ -40,8 +40,6 @@ public class ProductController {
 	}
 	
 	public String createProductAdmin(){		
-			if(this.fornitore == null)
-				return "Non ho assegnato il fornitore dal menù a tendina";
 			this.prodotto = prodottoFacade.createProduct(nome, codice, descrizione, prezzo, quantita, fornitore);
 			return "/portaleAdmin/product.xhtml"; //pagina: product.xhtml
 	}

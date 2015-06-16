@@ -12,7 +12,7 @@
 <h:body>
 
 	<div>
-		<a href="javascript:history.go(-1);">Back</a>
+		<h:outputLink value="index.xhtml">Back</h:outputLink>
 	</div>
 
 	<div>Nome: ${productController.prodotto.nome}</div>
@@ -20,7 +20,7 @@
 	<div>Descrizione: ${productController.prodotto.descrizione}</div>
 	<div>Prezzo: ${productController.prodotto.prezzo}</div>
 	<div>Quantità: ${productController.prodotto.quantita}</div>
-	<div>Disponibilita: ${productController.prodotto.disponibilita}</div>
+	<div>Disponibilita: ${productController.prodotto.isDisponibile()?'si':'no'}</div>
 
 	<div>
 		Fornitori di questo prodotto:
