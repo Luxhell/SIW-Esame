@@ -77,6 +77,7 @@ public class Customer {
 	
 	public boolean addOrdine(Order order){
 		return this.ordini.add(order);
+		
 	}
 	
 	

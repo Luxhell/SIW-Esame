@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -56,7 +57,11 @@ public class ProviderController {
     }
     
     public List<Product> getAllProducts(){
-    	return this.session.getProviderTemp().getProdotti();
+    	try{
+    		return this.session.getProviderTemp().getProdotti();
+    	}catch(NullPointerException e){
+    		return new ArrayList<Product>();
+    	}
     }	
     
     public String dettagli(Provider provider){
