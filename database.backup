@@ -1,0 +1,447 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.3.6
+-- Dumped by pg_dump version 9.4.1
+-- Started on 2015-06-17 17:03:39
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+DROP DATABASE luciano;
+--
+-- TOC entry 1998 (class 1262 OID 16671)
+-- Name: luciano; Type: DATABASE; Schema: -; Owner: luciano
+--
+
+CREATE DATABASE luciano WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
+
+
+ALTER DATABASE luciano OWNER TO luciano;
+
+\connect luciano
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 5 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO postgres;
+
+--
+-- TOC entry 1999 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: postgres
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
+
+--
+-- TOC entry 178 (class 3079 OID 11756)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2001 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 170 (class 1259 OID 17993)
+-- Name: address; Type: TABLE; Schema: public; Owner: luciano; Tablespace: 
+--
+
+CREATE TABLE address (
+    id bigint NOT NULL,
+    cap character varying(254) NOT NULL,
+    citta character varying(254) NOT NULL,
+    regione character varying(254) NOT NULL,
+    stato character varying(254) NOT NULL,
+    via character varying(254) NOT NULL
+);
+
+
+ALTER TABLE address OWNER TO luciano;
+
+--
+-- TOC entry 171 (class 1259 OID 18001)
+-- Name: customer; Type: TABLE; Schema: public; Owner: luciano; Tablespace: 
+--
+
+CREATE TABLE customer (
+    id bigint NOT NULL,
+    cognome character varying(254) NOT NULL,
+    datanascita date NOT NULL,
+    dataregistrazione date NOT NULL,
+    email character varying(254) NOT NULL,
+    isadmin boolean NOT NULL,
+    nome character varying(254) NOT NULL,
+    password character varying(254) NOT NULL,
+    address_id bigint
+);
+
+
+ALTER TABLE customer OWNER TO luciano;
+
+--
+-- TOC entry 172 (class 1259 OID 18009)
+-- Name: openjpa_sequence_table; Type: TABLE; Schema: public; Owner: luciano; Tablespace: 
+--
+
+CREATE TABLE openjpa_sequence_table (
+    id smallint NOT NULL,
+    sequence_value bigint
+);
+
+
+ALTER TABLE openjpa_sequence_table OWNER TO luciano;
+
+--
+-- TOC entry 173 (class 1259 OID 18014)
+-- Name: orderlines; Type: TABLE; Schema: public; Owner: luciano; Tablespace: 
+--
+
+CREATE TABLE orderlines (
+    id bigint NOT NULL,
+    prezzounitario numeric NOT NULL,
+    quantita integer NOT NULL,
+    order_id bigint,
+    product_id bigint
+);
+
+
+ALTER TABLE orderlines OWNER TO luciano;
+
+--
+-- TOC entry 174 (class 1259 OID 18022)
+-- Name: orders; Type: TABLE; Schema: public; Owner: luciano; Tablespace: 
+--
+
+CREATE TABLE orders (
+    id bigint NOT NULL,
+    dataaperturaordine timestamp without time zone NOT NULL,
+    datachiusuraordine timestamp without time zone,
+    dataevasioneordine timestamp without time zone,
+    customer_id bigint
+);
+
+
+ALTER TABLE orders OWNER TO luciano;
+
+--
+-- TOC entry 175 (class 1259 OID 18027)
+-- Name: product; Type: TABLE; Schema: public; Owner: luciano; Tablespace: 
+--
+
+CREATE TABLE product (
+    id bigint NOT NULL,
+    codice character varying(254) NOT NULL,
+    descrizione character varying(254),
+    nome character varying(254) NOT NULL,
+    prezzo numeric NOT NULL,
+    quantita numeric NOT NULL
+);
+
+
+ALTER TABLE product OWNER TO luciano;
+
+--
+-- TOC entry 176 (class 1259 OID 18035)
+-- Name: provider; Type: TABLE; Schema: public; Owner: luciano; Tablespace: 
+--
+
+CREATE TABLE provider (
+    id bigint NOT NULL,
+    email character varying(254) NOT NULL,
+    partitaiva character varying(254) NOT NULL,
+    telefono character varying(254) NOT NULL,
+    address_id bigint
+);
+
+
+ALTER TABLE provider OWNER TO luciano;
+
+--
+-- TOC entry 177 (class 1259 OID 18043)
+-- Name: provider2product; Type: TABLE; Schema: public; Owner: luciano; Tablespace: 
+--
+
+CREATE TABLE provider2product (
+    provider_id bigint,
+    product_id bigint
+);
+
+
+ALTER TABLE provider2product OWNER TO luciano;
+
+--
+-- TOC entry 1986 (class 0 OID 17993)
+-- Dependencies: 170
+-- Data for Name: address; Type: TABLE DATA; Schema: public; Owner: luciano
+--
+
+INSERT INTO address (id, cap, citta, regione, stato, via) VALUES (51, '00054', 'FREGENE', 'LAZIO', 'ITALIA', 'VIA DELL''ADMIN');
+INSERT INTO address (id, cap, citta, regione, stato, via) VALUES (101, 'cap1', 'citta1', 'regione1', 'stato1', 'via del fornitore1');
+INSERT INTO address (id, cap, citta, regione, stato, via) VALUES (102, '00022', 'città fornitore 2', 'Lazio', 'Italia', 'via fornitore 2');
+INSERT INTO address (id, cap, citta, regione, stato, via) VALUES (201, '0033', 'città fornitore 3', 'Lazio', 'Italia', 'via fornitore 3');
+INSERT INTO address (id, cap, citta, regione, stato, via) VALUES (202, '00011', 'città cliente 1', 'Lazio', 'Italia', 'via cliente 1');
+INSERT INTO address (id, cap, citta, regione, stato, via) VALUES (203, '00055', 'CITTA ADMIN 2', 'LAZIO', 'ITALIA', 'VIA ADMIN 2');
+INSERT INTO address (id, cap, citta, regione, stato, via) VALUES (204, '00022', 'città cliente 2', 'Lazio', 'Italia', 'via cliente 2');
+
+
+--
+-- TOC entry 1987 (class 0 OID 18001)
+-- Dependencies: 171
+-- Data for Name: customer; Type: TABLE DATA; Schema: public; Owner: luciano
+--
+
+INSERT INTO customer (id, cognome, datanascita, dataregistrazione, email, isadmin, nome, password, address_id) VALUES (1, 'QUARANTA', '2015-06-17', '2015-06-17', 'luciano@gmail.com', true, 'LUCIANO', '123456', 51);
+INSERT INTO customer (id, cognome, datanascita, dataregistrazione, email, isadmin, nome, password, address_id) VALUES (351, 'cognome1', '1961-01-12', '2015-06-17', 'cliente1@gmail.com', false, 'nome1', '123456', 202);
+INSERT INTO customer (id, cognome, datanascita, dataregistrazione, email, isadmin, nome, password, address_id) VALUES (352, 'TEDESCHI', '1989-07-10', '2015-06-17', 'fabio@gmail.com', true, 'FABIO', '123456', 203);
+INSERT INTO customer (id, cognome, datanascita, dataregistrazione, email, isadmin, nome, password, address_id) VALUES (353, 'cognome2', '1845-12-26', '2015-06-17', 'cliente2@gmail.com', false, 'nome2', '123456', 204);
+
+
+--
+-- TOC entry 1988 (class 0 OID 18009)
+-- Dependencies: 172
+-- Data for Name: openjpa_sequence_table; Type: TABLE DATA; Schema: public; Owner: luciano
+--
+
+INSERT INTO openjpa_sequence_table (id, sequence_value) VALUES (0, 501);
+
+
+--
+-- TOC entry 1989 (class 0 OID 18014)
+-- Dependencies: 173
+-- Data for Name: orderlines; Type: TABLE DATA; Schema: public; Owner: luciano
+--
+
+INSERT INTO orderlines (id, prezzounitario, quantita, order_id, product_id) VALUES (451, 1, 2, 401, 301);
+INSERT INTO orderlines (id, prezzounitario, quantita, order_id, product_id) VALUES (452, 0.5, 1, 402, 302);
+INSERT INTO orderlines (id, prezzounitario, quantita, order_id, product_id) VALUES (453, 3.5, 1, 403, 304);
+INSERT INTO orderlines (id, prezzounitario, quantita, order_id, product_id) VALUES (454, 0.5, 1, 403, 302);
+INSERT INTO orderlines (id, prezzounitario, quantita, order_id, product_id) VALUES (455, 0.5, 1, 404, 302);
+
+
+--
+-- TOC entry 1990 (class 0 OID 18022)
+-- Dependencies: 174
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: luciano
+--
+
+INSERT INTO orders (id, dataaperturaordine, datachiusuraordine, dataevasioneordine, customer_id) VALUES (402, '2015-06-17 13:18:52.937', '2015-06-17 13:19:04.963', NULL, 351);
+INSERT INTO orders (id, dataaperturaordine, datachiusuraordine, dataevasioneordine, customer_id) VALUES (403, '2015-06-17 13:24:09.153', '2015-06-17 13:25:01.411', NULL, 351);
+INSERT INTO orders (id, dataaperturaordine, datachiusuraordine, dataevasioneordine, customer_id) VALUES (404, '2015-06-17 13:25:32.292', '2015-06-17 13:25:36.424', NULL, 351);
+INSERT INTO orders (id, dataaperturaordine, datachiusuraordine, dataevasioneordine, customer_id) VALUES (401, '2015-06-17 13:10:43.191', '2015-06-17 13:11:10.875', '2015-06-17 13:26:55.3', 351);
+
+
+--
+-- TOC entry 1991 (class 0 OID 18027)
+-- Dependencies: 175
+-- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: luciano
+--
+
+INSERT INTO product (id, codice, descrizione, nome, prezzo, quantita) VALUES (301, '001', 'una mela verde', 'mela', 1, 50);
+INSERT INTO product (id, codice, descrizione, nome, prezzo, quantita) VALUES (304, '004', 'una melone giallo', 'melone', 3.5, 0);
+INSERT INTO product (id, codice, descrizione, nome, prezzo, quantita) VALUES (302, '002', 'un acino d''uva', 'uva', 0.5, 997);
+INSERT INTO product (id, codice, descrizione, nome, prezzo, quantita) VALUES (303, '003', 'una pera verde', 'pera', 2, 15);
+INSERT INTO product (id, codice, descrizione, nome, prezzo, quantita) VALUES (305, '005', 'una noce di cocco marrone', 'noce di cocco', 90, 33);
+
+
+--
+-- TOC entry 1992 (class 0 OID 18035)
+-- Dependencies: 176
+-- Data for Name: provider; Type: TABLE DATA; Schema: public; Owner: luciano
+--
+
+INSERT INTO provider (id, email, partitaiva, telefono, address_id) VALUES (152, 'fornitore2@gmail.com', 'qwerty2', '06222222', 102);
+INSERT INTO provider (id, email, partitaiva, telefono, address_id) VALUES (251, 'fornitore3@gmail.com', 'qwerty3', '06333333', 201);
+INSERT INTO provider (id, email, partitaiva, telefono, address_id) VALUES (151, 'fornitore1@gmail.com', 'qwerty1', '0611111', 101);
+
+
+--
+-- TOC entry 1993 (class 0 OID 18043)
+-- Dependencies: 177
+-- Data for Name: provider2product; Type: TABLE DATA; Schema: public; Owner: luciano
+--
+
+INSERT INTO provider2product (provider_id, product_id) VALUES (151, 301);
+INSERT INTO provider2product (provider_id, product_id) VALUES (152, 302);
+INSERT INTO provider2product (provider_id, product_id) VALUES (251, 303);
+INSERT INTO provider2product (provider_id, product_id) VALUES (251, 304);
+INSERT INTO provider2product (provider_id, product_id) VALUES (251, 305);
+
+
+--
+-- TOC entry 1859 (class 2606 OID 18000)
+-- Name: address_pkey; Type: CONSTRAINT; Schema: public; Owner: luciano; Tablespace: 
+--
+
+ALTER TABLE ONLY address
+    ADD CONSTRAINT address_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1861 (class 2606 OID 18008)
+-- Name: customer_pkey; Type: CONSTRAINT; Schema: public; Owner: luciano; Tablespace: 
+--
+
+ALTER TABLE ONLY customer
+    ADD CONSTRAINT customer_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1863 (class 2606 OID 18013)
+-- Name: openjpa_sequence_table_pkey; Type: CONSTRAINT; Schema: public; Owner: luciano; Tablespace: 
+--
+
+ALTER TABLE ONLY openjpa_sequence_table
+    ADD CONSTRAINT openjpa_sequence_table_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1865 (class 2606 OID 18021)
+-- Name: orderlines_pkey; Type: CONSTRAINT; Schema: public; Owner: luciano; Tablespace: 
+--
+
+ALTER TABLE ONLY orderlines
+    ADD CONSTRAINT orderlines_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1867 (class 2606 OID 18026)
+-- Name: orders_pkey; Type: CONSTRAINT; Schema: public; Owner: luciano; Tablespace: 
+--
+
+ALTER TABLE ONLY orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1869 (class 2606 OID 18034)
+-- Name: product_pkey; Type: CONSTRAINT; Schema: public; Owner: luciano; Tablespace: 
+--
+
+ALTER TABLE ONLY product
+    ADD CONSTRAINT product_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1871 (class 2606 OID 18042)
+-- Name: provider_pkey; Type: CONSTRAINT; Schema: public; Owner: luciano; Tablespace: 
+--
+
+ALTER TABLE ONLY provider
+    ADD CONSTRAINT provider_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 1872 (class 2606 OID 18046)
+-- Name: customer_address_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: luciano
+--
+
+ALTER TABLE ONLY customer
+    ADD CONSTRAINT customer_address_id_fkey FOREIGN KEY (address_id) REFERENCES address(id) DEFERRABLE;
+
+
+--
+-- TOC entry 1873 (class 2606 OID 18051)
+-- Name: orderlines_order_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: luciano
+--
+
+ALTER TABLE ONLY orderlines
+    ADD CONSTRAINT orderlines_order_id_fkey FOREIGN KEY (order_id) REFERENCES orders(id) DEFERRABLE;
+
+
+--
+-- TOC entry 1874 (class 2606 OID 18056)
+-- Name: orderlines_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: luciano
+--
+
+ALTER TABLE ONLY orderlines
+    ADD CONSTRAINT orderlines_product_id_fkey FOREIGN KEY (product_id) REFERENCES product(id) DEFERRABLE;
+
+
+--
+-- TOC entry 1875 (class 2606 OID 18061)
+-- Name: orders_customer_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: luciano
+--
+
+ALTER TABLE ONLY orders
+    ADD CONSTRAINT orders_customer_id_fkey FOREIGN KEY (customer_id) REFERENCES customer(id) DEFERRABLE;
+
+
+--
+-- TOC entry 1878 (class 2606 OID 18076)
+-- Name: provider2product_product_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: luciano
+--
+
+ALTER TABLE ONLY provider2product
+    ADD CONSTRAINT provider2product_product_id_fkey FOREIGN KEY (product_id) REFERENCES product(id) DEFERRABLE;
+
+
+--
+-- TOC entry 1877 (class 2606 OID 18071)
+-- Name: provider2product_provider_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: luciano
+--
+
+ALTER TABLE ONLY provider2product
+    ADD CONSTRAINT provider2product_provider_id_fkey FOREIGN KEY (provider_id) REFERENCES provider(id) DEFERRABLE;
+
+
+--
+-- TOC entry 1876 (class 2606 OID 18066)
+-- Name: provider_address_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: luciano
+--
+
+ALTER TABLE ONLY provider
+    ADD CONSTRAINT provider_address_id_fkey FOREIGN KEY (address_id) REFERENCES address(id) DEFERRABLE;
+
+
+--
+-- TOC entry 2000 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2015-06-17 17:03:59
+
+--
+-- PostgreSQL database dump complete
+--
+
