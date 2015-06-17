@@ -1,0 +1,119 @@
+Specifiche casi d’uso del progetto per l’esame del 18 giugno 2015.
+
+° Caso d’uso UC1: consulta listino prodotti
+	-attore primario: utente non registrato
+	-scenario di successo:
+		° l’utente consulta il catalogo dei prodotti
+     		° l’utente sceglie un prodotto e ne richiede i dettagli
+		° il sistema mostra i dettagli del prodotto
+		° l’utente ripete i passi precedenti un numero indefinito di volte
+	-precondizioni: nessuna
+
+° Caso d’uso UC2: registra nuovo fornitore
+	-attore primario: amministratore
+	-scenario di successo:
+° l’amministratore inserisce tutte le credenziali per la registrazione di un nuovo fornitore
+° il sistema registra il nuovo fornitore 
+° il sistema mostra all’amministratore i dettagli del fornitore appena creato
+	-precondizioni: l’amministratore è identificato e autenticato
+
+° Caso d’uso UC3: registra nuovo cliente
+-attore primario: amministratore
+	-scenario di successo:
+° l’amministratore inserisce tutti i dati richiesti per la registrazione di un nuovo cliente
+		° il sistema registra il nuovo cliente
+° il sistema mostra all’amministratore i dettagli del cliente appena creato
+-precondizioni: l’amministratore è identificato e autenticato
+
+° Caso d’uso UC4: registra nuovo prodotto (da amministratore)
+	-attore primario: amministratore
+	-scenario di successo:
+° l’amministratore inserisce tutti i dati richiesti per la registrazione di un nuovo prodotto specificando anche i suoi fornitori
+		° il sistema registra il nuovo prodotto
+		° il sistema mostra all’amministratore i dettagli del prodotto appena creato
+	-precondizioni: l’amministratore è identificato e autenticato
+
+° Caso d’uso UC5: evasione ordine
+	-attore primario: amministratore
+	-scenario di successo: 
+		° il sistema presenta all’amministratore gli ordini chiusi ma non evasi
+		° l’amministratore sceglie un ordine da evadere
+° il sistema evade l’ordine.
+° il sistema aggiorna l’ordine inserendo la data di spedizione e processo l’ordine
+-precondizioni: l’amministratore è identificato e autenticato
+
+° Caso d’uso UC6: cancella ordine
+	-attore primario: amministratore
+	-scenario di successo: 
+		° il sistema presenta all’amministratore gli ordini chiusi ma non evasi
+		° l’amministratore sceglie un ordine da cancellare
+° il sistema cancella l’ordine
+° il sistema riaggiunge le quantità dei prodotti in magazzino che erano presenti nell’ordine appena cancellato
+-precondizioni: l’amministratore è identificato e autenticato
+
+° Caso d’uso UC7: consulta listino prodotti
+	-attore primario: amministratore
+	-scenario di successo:
+		° l’amministratore consulta il catalogo dei prodotti
+     		° l’amministratore sceglie un prodotto e ne richiede i dettagli
+		° il sistema mostra i dettagli del prodotto
+		° l’amministratore ripete i passi precedenti un numero indefinito di volte
+	-precondizioni: l’amministratore è identificato e autenticato
+
+° Caso d’uso UC8: consulta listino fornitori
+	-attore primario: amministratore
+	-scenario di successo: 
+		° l’amministratore consulta il catalogo dei fornitori
+		° l’amministratore sceglie un fornitore e ne richiede i dettagli
+° il sistema mostra i dettagli del fornitori compresi i prodotti da lui forniti	 
+-precondizioni: l’amministratore è identificato e autenticato
+
+° Caso d’uso UC9: effettua ordine 
+	-attore primario: cliente
+	-scenario di successo:
+° il cliente consulta il catalogo dei prodotti
+		° il cliente crea un nuovo ordine
+		° il cliente sceglie un prodotto da aggiungere nell’ordine
+		° il sistema registra la riga di ordine
+		° il cliente ripete i 2 passi precedenti finché necessario
+		° il cliente “chiude” l’ordine
+° il sistema registra l’ordine chiuso ma non ancora evaso e preleva dal magazzino la quantità dei prodotti comprati 
+	-precondizioni: il cliente è identificato e autenticato
+
+° Caso d’uso UC10: registra nuovo prodotto (da fornitore)
+	-attore primario: fornitore
+-scenario di successo:
+° il fornitore inserisce un nuovo prodotto nel catalogo specificandone i dettagli
+		° il sistema registra il prodotto e lo assegna al fornitore identificato e autenticato
+		° i punti precedenti vengono ripetuti finchè necessario
+	-precondizioni: il fornitore  è identificato e autenticato
+
+° Caso d’uso UC11: visualizza i propri prodotti (da fornitore)
+	-attore primario: fornitore
+	-scenario di successo: 
+		° il sistema mostra la lista dei prodotti di un fornitore
+		° il fornitore sceglie un prodotto di cui vuole conoscere i dettagli
+° il sistema mostra i dettagli del prodotto selezionato	 
+-precondizioni: il fornitore è identificato e autenticato
+
+° Caso d’uso UC12: login amministratore/cliente
+	-attore primario: utente non loggato 
+	-scenario di successo:
+		° l’utente inserisce la propria email e password
+		° il sistema autentica le credenziali e lo rimanda alla propria index 
+-precondizioni: nessuna
+
+° Caso d’uso UC13: login fornitore
+	-attore primario: fornitore non loggato 
+	-scenario di successo:
+		° il fornitore inserisce la propria email e la propria partita iva
+		° il sistema autentica le credenziali e lo rimanda alla propria index 
+-precondizioni: nessuna
+
+° Caso d’uso UC14: registra nuovo amministratore (solo per scopi didattici, in realtà dovrebbe essere un metodo dell’amministratore)
+-attore primario: nessuno 
+	-scenario di successo:
+		° vengono inseriti tutti i dati richiesti per la registrazione di un nuovo amministratore
+		° il sistema registra il nuovo amministratore
+		° il sistema mostra i dettagli del nuovo amministratore
+-precondizioni: nessuna
